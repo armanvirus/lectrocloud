@@ -1,0 +1,97 @@
+@font-face {
+    font-family: 'JosefinSans-SemiBold';
+    src: url('./Fonts/JosefinSans-SemiBold.ttf');
+  }
+  
+  @font-face {
+    font-family: 'RobotoCondensed-Regular';
+    src: url('./Fonts/RobotoCondensed-Regular.ttf');
+  }
+.light-container{
+    padding: 30px 20px;
+}
+.active-user{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 42px;
+    width: 42px;
+    background: rgba(255,255,255,1);
+    border-radius: 50%;
+    box-shadow: 0 0 3px 1px rgba(255,255,255,.8);
+    margin-bottom: 30px;
+}
+
+.active-user img{
+    height: 42px;
+    width: 42px;
+    object-fit:cover;
+    border-radius: 50%;
+}
+
+textarea{
+    resize: none;
+    width: 100%;
+    display: block;
+    border: none;
+    outline: none;
+    background: transparent;
+    padding: 10px 5px;
+    box-shadow: .001px 1px .5px rgba(0,0,0,.09);
+    margin-bottom: 15px;
+}
+
+textarea::placeholder{
+    padding: 10px 5px;
+}
+.files{
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    gap: 5px;
+}
+
+.files input[type="file"]{
+    display: none;
+}
+
+.files label{
+    height: 35px;
+    width: 35px;
+    border-radius:5px;
+    box-shadow: 0 0 2px rgba(0,0,0,.2);
+    display: block;
+    padding: 5px;
+    cursor: pointer;
+    
+}
+
+.files div:first-child{
+    margin-right: 7px;
+}
+
+.send-btn{
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin-top: 30px;
+
+}
+
+.send-btn button{
+    height: 35px;
+    width: 150px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    outline: none;
+    border-radius: 15px;
+    background: rgb(55,125,255);
+    box-shadow: 3px 3px 3px rgba(0,0,0,.1);
+    color: #f2f2f2;
+    font-family: "JosefinSans-SemiBold";
+}
+

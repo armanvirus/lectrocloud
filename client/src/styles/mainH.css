@@ -1,0 +1,121 @@
+@font-face {
+  font-family: 'JosefinSans-SemiBold';
+  src: url('./Fonts/JosefinSans-SemiBold.ttf');
+}
+
+@font-face {
+  font-family: 'RobotoCondensed-Regular';
+  src: url('./Fonts/RobotoCondensed-Regular.ttf');
+}
+.bBar{
+  position: fixed;
+  bottom: 0;
+  padding: 15px 30px;
+  display: flex;
+  justify-content: space-between;
+  width: 100vw;
+  background: rgb(255, 255,250);
+  box-shadow:0 0 3px 1px rgba(0, 0,0,.2);
+  padding: 10px 20px;
+  border-top-right-radius: 15px;
+  border-top-left-radius: 15px;
+}
+.bBar a{
+  /* background: rgba(0, 0,0,.03); */
+  border: solid .3px rgb(255, 255,250);
+  box-shadow:0 0 2px .5px rgba(0, 0,0,.3);
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.bBar a span{
+  font-size: 30px;
+}
+
+/* top bar */
+.topbar{
+  position: fixed;
+
+}
+.top-bar-search{
+  display: flex;
+  align-items: center;
+  width: 100vw;
+  padding: 15px 20px;
+  background: rgb(255, 255,250);
+  border-radius: 0 0 10px 10px;
+  border: solid .4px rgba(0, 0,0,.2);
+}
+.top-bar-search input{
+  background: transparent;
+  border: none;
+  outline: none;
+  width: 90%;
+  height: 38px;
+  padding: 5px 30px;
+  background: rgb(255, 255,250);
+  box-shadow:0 0 2px .7px rgba(0, 0,0,.2);
+  border-radius: 15px 0 0 0;
+  padding: 3px 15px;
+}
+
+.top-bar-search input::placeholder{
+  font-family: RobotoCondensed-Regular;
+  color: #333;
+}
+.top-bar-search 
+.top-search-icon{
+  height: 38px;
+  padding: 5px;
+  background: rgb(55,125,255);
+  box-shadow:0 0 2px .7px rgba(0, 0,0,.2);
+  color: white;
+  font-weight: 500;
+  border-radius: 0 0 15px 0;
+}
+
+
+.top-bar-toggle{
+  width: 100vw;
+  padding:5px 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.top-bar-toggle div{
+  width: 60%;
+  height: 35px;
+  display: flex;
+  align-items: center;
+  background: rgb(255, 255,250);
+  box-shadow:0 0 2px .7px rgba(0, 0,0,.2);
+  border-radius: 15px;
+  padding:2px;
+}
+.top-bar-toggle button{
+  display: inline-block;
+  background: transparent;
+  width: 50%;
+  border: none;
+  outline: none;
+  font-family: JosefinSans-SemiBold;
+}
+
+.top-bar-toggle button.toggle-btn-active{
+  background: rgb(55,125,255);
+  height: 100%;
+  border-radius: 15px;
+  color: white;
+  transition: 0.3s;
+}
+.material-symbols-outlined {
+  font-variation-settings:
+  'FILL' 0,
+  'wght' 300,
+  'GRAD' 0,
+  'opsz' 50
+}
