@@ -10,29 +10,29 @@
 .bBar{
   position: fixed;
   bottom: 0;
-  padding: 15px 30px;
+  padding: 10px 30px;
   display: flex;
   justify-content: space-between;
   width: 100vw;
   background: rgb(255, 255,250);
-  box-shadow:0 0 3px 1px rgba(0, 0,0,.2);
+  box-shadow:0 0 2px 1px rgba(0, 0,0,.2);
   padding: 10px 20px;
   border-top-right-radius: 15px;
   border-top-left-radius: 15px;
 }
 .bBar a{
   /* background: rgba(0, 0,0,.03); */
-  border: solid .3px rgb(255, 255,250);
-  box-shadow:0 0 2px .5px rgba(0, 0,0,.3);
-  height: 40px;
-  width: 40px;
+  /* border: solid .3px rgb(255, 255,250);
+  box-shadow:0 0 2px .5px rgba(0, 0,0,.3); */
+  height: 30px;
+  width: 30px;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 .bBar a span{
-  font-size: 30px;
+  font-size: 25px;
 }
 
 /* top bar */
