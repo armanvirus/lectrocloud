@@ -10,21 +10,21 @@ export default function Posts(props) {
             return(
                 <div className="post">
             <div className="avatar">
-                <img src={el.user.profile} alt="Error"/>
+                <img src={amin} alt="Error"/>
             </div>
             <div className="post-content">
-                <p className="posted-user">{el.user.userName}</p>
-                <p className="posted-on">{el.postedOn}</p>
+                <p className="posted-user">{el.user.username}</p>
+                <p className="posted-on">{el.lightOn}</p>
                 <div>
                     <div className="notes">
                         <p>
-                            {el.postText} 
+                            {el.note} 
                         </p>
                     </div>
-                    <div className={el.imgs.length > 1 ? 
+                    <div className={el.images.length > 1 ? 
                     "post-imgs post-imgs-many" : 
                     "post-imgs post-imgs-single"}>
-                        {el.imgs.map((imgEl,imgIndex)=>{
+                        {el.images.map((imgEl,imgIndex)=>{
                             return(
                                 <img src={imgEl} alt="" />
                             )

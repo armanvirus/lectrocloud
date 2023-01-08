@@ -16,4 +16,4 @@ const mongoose = require("mongoose"),
       });
 
 
-   module.exports = mongoose.model("Stud", userSchema);
+   module.exports = mongoose.model("studs", userSchema);

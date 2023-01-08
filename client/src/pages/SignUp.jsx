@@ -5,7 +5,7 @@ import Contact from "./signup/Contact"
 import "../styles/login.css"
 
 export default function SignUp() {
-    const [page,setPage] = useState(2)
+    const [page,setPage] = useState(0)
     const currentPage = ()=>{
         if(page == 0) return <Credentials setPage={setPage}/>
         else if(page == 1) return <Academic setPage={setPage}/>

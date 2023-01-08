@@ -4,7 +4,6 @@ const jwt = require("jsonwebtoken")
 const Log = {
     check:(req,res)=>{
         const {idNum} = req.body;
-        console.log(idNum)
         Stud.findOne({idNum},(err,result)=>{
             if(err) throw err;
             if(result){
@@ -47,6 +46,7 @@ const Log = {
                             if(err) return res.send(err)
                             //create a token
                         const token = jwt.sign({
+                            id:savedStud._id,
                             idNum:savedStud.idNum,
                             level:savedStud.level,
                             academicSession:savedStud.academicSession,
@@ -81,6 +81,7 @@ console.log(req.body)
                     if(result){
                         // create a token
                         const token = jwt.sign({
+                            id:stud._id,
                             idNum:stud.idNum,
                             level:stud.level,
                             academicSession:stud.academicSession,

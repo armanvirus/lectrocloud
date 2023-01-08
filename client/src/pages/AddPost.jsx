@@ -1,14 +1,23 @@
-import React,{useState} from 'react'
+import React,{useState, useEffect} from 'react'
+// import { Document, Page } from 'react-pdf';
+// import { jsPDF } from "jspdf";
+import axios from "axios";
 import amin from "../assets/amin.png"
 import "../styles/addpost.css"
+
+// console.log(jsPDF)
 
 export default function AddPost() {
     const [selectedFile, setselectedFile] = useState("");
     const [previewUrl, setpreviewUrl] = useState('');
+    const [notes, setnotes] = useState('');
 
+    useEffect(() => {
+        console.log(localStorage.getItem('lectroToken'))
+    }, [])
+    
     const inputChange = (e)=>{
         const file = e.target.files[0]
-        console.log(file)
         previewFile(file);
     }
 
@@ -16,9 +25,25 @@ export default function AddPost() {
         const reader = new FileReader();
         reader.readAsDataURL(file);
         reader.onloadend = ()=>{
-            console.log(reader.result)
+            // console.log(reader.result)
             setpreviewUrl(reader.result)
         }
+    }
+
+    const handleLight = ()=>{
+        if(previewUrl || notes){
+            axios.post('http://localhost:3300/user/light',{
+                image:previewUrl,
+                notes,
+                user:localStorage.getItem('lectroToken')
+            }).then((response)=>{
+                console.log(response)
+            })
+        }else{
+
+            console.log("none of the is present")
+        }
+
     }
     return (
         <div>
@@ -27,18 +52,20 @@ export default function AddPost() {
                 <img src={amin} alt="user-image"/>
                 
             </div>
-            <textarea placeholder="Is there something new?" name="notes"></textarea>
+            <textarea onChange={(e)=>{
+               setnotes(e.target.value)
+            }} placeholder="Is there something new?" name="notes"></textarea>
             <div className="files">
                 <div>
                     <label htmlFor="image">
                     <input onChange={(e)=> inputChange(e) } type="file" name="image" id="image"/>
-                    <spna className="material-symbols-outlined">landscape</spna>
+                    <span className="material-symbols-outlined">landscape</span>
                     </label>
                </div>
                <div>
                     <label htmlFor="file">
                     <input type="file" name="docs" id="file"/>
-                    <spna className="material-symbols-outlined">picture_as_pdf</spna>
+                    <span className="material-symbols-outlined">picture_as_pdf</span>
                     </label>
                </div>
             </div>
@@ -48,7 +75,7 @@ export default function AddPost() {
                 )
             }
             <div className="send-btn">
-            <button> <span> light </span> <span className="material-symbols-outlined">bolt</span> </button>
+            <button onClick={()=>{handleLight()}}> <span> light </span> <span className="material-symbols-outlined">bolt</span> </button>
             </div>
             </div>
         </div>
