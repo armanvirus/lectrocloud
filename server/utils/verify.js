@@ -12,7 +12,7 @@ module.exports = (req,res)=>{
                     res.status(200).json({postData:data})
                 })
             } else {
-              const data =  postData.filter((el)=> el.level == decoded.level && el.academicSession == decoded.academicSession)
+            //   const data =  postData.filter((el)=> el.level == decoded.level && el.academicSession == decoded.academicSession)
               
               lights.find({$and: [
                 { level: decoded.level },
@@ -25,6 +25,8 @@ module.exports = (req,res)=>{
             }
         })
     }else{
-        res.status(200).json({postData})
+        lights.find({},(err,data)=>{  
+            res.status(200).json({postData:data})
+        })
     }
 }

@@ -1,9 +1,20 @@
-import React from 'react'
+import React, {useState} from 'react'
+import axios from 'axios'
 import "../styles/posts.css"
 import amin from "../assets/amin.png"
 
 export default function Posts(props) {
     const {postData} = props;
+    // const [reactedLight, setreactedLight] = useState('')
+    //console.log(postData)
+    const handleReact = (e,reactedLight)=>{
+        axios.post("http://localhost:3300/user/reaction",{
+            user:localStorage.getItem("lectroToken"),
+            reactedLight
+        }).then((response)=>{
+            console.log(response)
+        })
+    }
     return (
         <>
         { postData.map((el,elIndex)=>{
@@ -21,9 +32,9 @@ export default function Posts(props) {
                             {el.note} 
                         </p>
                     </div>
-                    <div className={el.images.length > 1 ? 
+                    <div className={el.images && (el.images.length > 1 ? 
                     "post-imgs post-imgs-many" : 
-                    "post-imgs post-imgs-single"}>
+                    "post-imgs post-imgs-single")}>
                         {el.images.map((imgEl,imgIndex)=>{
                             return(
                                 <img src={imgEl} alt="" />
@@ -33,7 +44,7 @@ export default function Posts(props) {
                 </div>
                 <div className="reactions-sec">
                 <div className="like-btn">
-                    <span className="material-symbols-outlined">
+                    <span onClick={(e)=> handleReact(e, el._id)} className="material-symbols-outlined">
                         favorite
                     </span>
                     <span>10</span>

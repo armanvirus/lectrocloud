@@ -8,6 +8,7 @@ const cors = require("cors")
 const verifiedData = require('./utils/verify');
 const light = require("./db/lights")
 const Studs = require("./db/Stud")
+const interactions = require('./controllers/interactions')
 const multer = require('multer')
 
 
@@ -43,6 +44,9 @@ app.post('/login', logs.login )
 // route to check if the user exist before creating account
 app.post('/user/check', logs.check);
 
+//handling reaction button
+app.post('/user/reaction', interactions.reaction)
+
 // route to make an upload
 app.post('/user/light',(req,res)=>{
   const {user, image, notes} = req.body;
@@ -74,26 +78,8 @@ app.post('/user/light',(req,res)=>{
   })
   }
 })
-// Set up a route for handling authenticated requests
-app.get('/protected', (req, res) => {
-  // Check for the presence of an Authorization header with a valid JWT
-  const token = req.headers.authorization
-  if (token) {
-    // If the JWT is valid, allow the request to continue
-    jwt.verify(token, JWT_SECRET, (error, decoded) => {
-      if (error) {
-        // If the JWT is invalid, send a 401 Unauthorized status code
-        res.sendStatus(401)
-      } else {
-        // If the JWT is valid, send the decoded user information to the client
-        res.json(decoded)
-      }
-    })
-  } else {
-    // If the request does not include a valid JWT, send a 401 Unauthorized status code
-    res.sendStatus(401)
-  }
-})
+
+
 
 
 
