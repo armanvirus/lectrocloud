@@ -1,13 +1,22 @@
-import React,{useEffect,useState} from 'react'
+import React,{useEffect,useState,useContext} from 'react'
 import axios from "axios"
 import Posts from "../components/Posts"
+import {StateContext} from '../context/provider';
 import amin from "../assets/amin.png"
 
 
 export default function Home() {
     // const [postData,setPostData] = useState('')
-    const [postData,setPostData] = useState('')
-    const [loading,setLoading] = useState(true)
+    // const [postData,setPostData] = useState('')
+    // const [loading,setLoading] = useState(true)
+    //pulling data from context
+    const {        
+        loading,
+        setLoading,
+        postData,
+        setPostData
+    } = useContext(StateContext);
+
 
     useEffect(()=>{
         
@@ -35,64 +44,7 @@ export default function Home() {
         console.log(err)
       })
     },[])
-      
-    // const post = [
-    //     {
-    //         user:{
-    //             userName:"@armangrema",
-    //             profile: amin
-    //         },
-    //         postedOn:"19/12/2020 11:00 pm",
-    //         imgs:[amin],
-    //         postText:`
-    //         Lorem ipsum dolor sit amet consectetur 
-    //         adipisicing elit. In repellat et mollitia 
-    //         perferendis temporibus dolore 
-    //         voluptatem eaque cum nemo ab 
-    //         blanditiis quibusdam, doloribus 
-    //         nihil iste 
-    //         provident atque hic cumque optio.
-    //         `
-
-    //     },
-    //     {
-    //         user:{
-    //             userName:"@armangrema",
-    //             profile: amin
-    //         },
-    //         postedOn:"19/12/2020 11:00 pm",
-    //         imgs:[amin,amin],
-    //         postText:`
-    //         Lorem ipsum dolor sit amet consectetur 
-    //         adipisicing elit. In repellat et mollitia 
-    //         perferendis temporibus dolore 
-    //         voluptatem eaque cum nemo ab 
-    //         blanditiis quibusdam, doloribus 
-    //         nihil iste 
-    //         provident atque hic cumque optio.
-    //         `
-
-    //     },
-    //     {
-    //         user:{
-    //             userName:"@armangrema",
-    //             profile: amin
-    //         },
-    //         postedOn:"19/12/2020 11:00 pm",
-    //         imgs:[amin,amin,amin,amin],
-    //         postText:`
-    //         Lorem ipsum dolor sit amet consectetur 
-    //         adipisicing elit. In repellat et mollitia 
-    //         perferendis temporibus dolore 
-    //         voluptatem eaque cum nemo ab 
-    //         blanditiis quibusdam, doloribus 
-    //         nihil iste 
-    //         provident atque hic cumque optio.
-    //         `
-
-    //     },
-        
-    // ]
+    
     return (
         <div>{ loading ? <h1>loading...</h1> :
            <Posts postData={postData}/>

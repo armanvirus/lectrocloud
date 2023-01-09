@@ -1,7 +1,22 @@
-import React,{useRef,useEffect} from 'react'
+import React,{useRef,useEffect,useState} from 'react'
 
 export default function TopBar() {
     const topbarRef = useRef()
+    const [scrollUp,setScrollUp] = useState(true)
+    const [beforeScroll, setbeforeScroll] = useState(0)
+
+   
+	window.addEventListener('scroll', function(e){
+		const scrolled = window.scrollY;
+		if(beforeScroll > scrolled){
+            setScrollUp(true)
+            setbeforeScroll(scrolled);
+		}
+		else{
+            setbeforeScroll(scrolled)
+			setScrollUp(false)
+		}
+	})
     
 
     useEffect(()=>{
@@ -15,7 +30,10 @@ export default function TopBar() {
                     <span className="material-symbols-outlined">search</span>
                 </div>
             </div>
-            <div className="top-bar-toggle">
+            <div 
+            style={
+                scrollUp ?{display:"flex"}  : {display:"none"}}
+            className="top-bar-toggle">
                 <div>
                     <button className="toggle-btn-active">Academia</button> 
                     <button>General</button>

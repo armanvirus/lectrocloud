@@ -4,6 +4,7 @@ import {
   Routes,
   Route,
 } from "react-router-dom";
+import ContextProvider from "./context/provider"
 import Login from "./pages/login"
 import SignUp from "./pages/SignUp"
 import MainHome from "./pages/MainHome"
@@ -16,6 +17,7 @@ function App() {
 
   return (
     <div className="App">
+    <ContextProvider>
       <Router>
       <Routes>
         {/* <Route path="/" element={<SignUp/>}/> */}
@@ -31,6 +33,7 @@ function App() {
       </Routes>
       </Router>
       {/* <Login/> */}
+      </ContextProvider>
     </div>
   )
 }

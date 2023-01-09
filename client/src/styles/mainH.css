@@ -77,14 +77,16 @@
   border-radius: 0 0 15px 0;
 }
 
-
 .top-bar-toggle{
-  width: 100vw;
+  
+  cursor: pointer;
   padding:5px 30px;
   display: flex;
   align-items: center;
   justify-content: center;
 }
+
+
 
 .top-bar-toggle div{
   width: 60%;
@@ -97,6 +99,7 @@
   padding:2px;
 }
 .top-bar-toggle button{
+  cursor: pointer;
   display: inline-block;
   background: transparent;
   width: 50%;
