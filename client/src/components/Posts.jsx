@@ -2,6 +2,7 @@ import React, {useState} from 'react'
 import axios from 'axios'
 import "../styles/posts.css"
 import amin from "../assets/amin.png"
+import {Link} from "react-router-dom";
 
 export default function Posts(props) {
     const {postData} = props;
@@ -50,9 +51,11 @@ export default function Posts(props) {
                     <span>10</span>
                 </div>
                 <div className="comment-btn">
+                    <Link to={`/helpers/alight/${el._id}`}>
                     <span className="material-symbols-outlined">
                         chat_bubble
                     </span>
+                    </Link>
                     <span>34</span>
                 </div>
                 </div>

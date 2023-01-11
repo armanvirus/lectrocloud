@@ -11,6 +11,7 @@ import MainHome from "./pages/MainHome"
 import Home from "./pages/Home"
 import Profile from "./pages/Profile"
 import AddPost from "./pages/AddPost"
+import Alight from "./pages/Alight"
 import "./App.css"
 
 function App() {
@@ -26,8 +27,9 @@ function App() {
         <Route path='main'  element={<MainHome/>}>
           <Route path='home'  index element={<Home/>}/>
           <Route path='profile' element={<Profile/>}/>
-          <Route path='light' element={<AddPost/>}/>   
+          <Route path='light' element={<AddPost/>}/> 
         </Route>
+          <Route path='/helpers/alight/:id' element={<Alight/>}/>   
         
         {/* <Route path="/*" element={<ErrorNotFound />} /> */}
       </Routes>

@@ -1,0 +1,138 @@
+@font-face {
+    font-family: 'RobotoCondensed-Regular';
+    src: url('./Fonts/RobotoCondensed-Regular.ttf');
+  }
+.top-commet-sec{
+    height: 50px;
+    display: flex;
+    position: fixed;
+    top: 0;
+    background: rgba(249,249,249,.98);
+    width: 100%;
+    padding: 5px 20px;
+    box-shadow: .001px .5px .5px rgba(0,0,0,.09);
+    align-items: center;
+}
+.top-commet-sec-psedo{
+    height: 50px;
+    width: 100%;
+    padding: 5px 20px;
+}
+
+.back-btn{
+    background: transparent;
+    outline: none;
+    border:none;
+    display: flex;
+    align-items: center;
+    color: rgb(10,0,0);
+    cursor: pointer;
+    
+}
+
+.back-btn span:first-child{
+    font-weight: 600;
+    font-size: 30px;
+    margin-right: 5px;
+}
+.light-user{
+    padding: 20px 20px 5px 20px;
+    display: flex;
+    align-items: center;
+}
+.light-user img{
+    height: 35px;
+    width: 35px;
+    object-fit: cover;
+    border-radius: 50%;
+    box-shadow: 0 0 1px rgba(0,0,0,.6);
+    margin-right: 10px;
+}
+.comment-subject{
+    margin-top: 10px;
+    padding:5px 20px 5px 20px;
+    box-shadow: .001px 1px .5px rgba(0,0,0,.09);
+}
+.comment-subject img{
+    height:200px;
+    width: 100%;
+    object-fit: contain;
+    border-radius: 10px;
+}
+.comment-subject > div{
+    padding: 10px 0;
+    font-family: apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    line-height: normal;
+    font-size: 14px;
+}
+.comments{
+    margin-bottom: 60px;
+}
+.comment{
+    padding: 5px 20px;
+    font-family: apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    font-size: 14px;
+    box-shadow: .001px .3px .5px rgba(0,0,0,.09);
+}
+.commentor-det{
+    display: flex;
+    align-items: center;
+    padding: 5px 0;
+    width: 100%;
+}
+.commentor-det img{
+    height: 25px;
+    width: 25px;
+    margin-right: 10px;
+    border-radius: 50%;
+}
+.commentor-det div:first-child{
+    font-weight: 600;
+    font-size: 15px;
+}
+.commentor-det div:last-child{
+    margin-left: 10px;
+    color: #333;
+}
+.comment-form{
+    display: flex;
+    align-items: center;
+    background: rgba(255,255,255,1);
+    position: fixed;
+    bottom: 0;
+    /* margin-bottom: 0; */
+    width: 100vw;
+    box-shadow: .001px 1px .5px rgba(0,0,0,.09), .001px -1px .5px rgba(0,0,0,.09);
+}
+textarea{
+    resize: none;
+    width: 100%;
+    height: 35px;
+    display: block;
+    border: none;
+    outline: none;
+    background: rgba(255,255,250,1);
+    /* padding:  5px; */
+}
+
+.comment-form > div{
+    margin-top: -16px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.comment-form button{
+    height: 30px;
+    width: 60px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    outline: none;
+    background: rgb(55,125,255);
+    box-shadow: 3px 3px 3px rgba(0,0,0,.1);
+    color: #f2f2f2;
+    font-family: "JosefinSans-SemiBold";
+}
