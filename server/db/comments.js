@@ -5,7 +5,7 @@ const mongoose = require("mongoose"),
    const CommetSchema = new Schema({
            comment:{type:String},
            user:{type:Object},
-           reply:[{ttpe:Object}]
+           reply:[{ttpe:Object}],
            images:[{ type: String }],
            files:[{ type: String }],
            likes:[{ type: String }],
