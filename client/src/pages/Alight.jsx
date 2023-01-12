@@ -13,7 +13,10 @@ export default function Alight() {
     let navigateBack = useNavigate();
     let url = useLocation();
     const [light, setLight] = useState('')
-    const [loading, setloading] = useState(true)
+    const [loading, setloading] = useState(true);
+    const [textAreaHeight, settextAreaHeight] = useState(50);
+    const [textAreaContent, settextAreaContent] = useState("");
+    const textAreaRef = useRef()
     const {        
         postData,
         setPostData
@@ -24,6 +27,14 @@ export default function Alight() {
         setLight(filteredLight)
         setloading(false)
     },[])
+
+
+
+    
+
+    const handleKeyUp = (event)=>{
+        settextAreaContent(event.target.value)
+    }
     return (
         <div> 
             { loading ? <h1>Loading...</h1> : <div>
@@ -89,7 +100,11 @@ export default function Alight() {
                 </div>
             </div>
             <div className="comment-form">
-                <textarea name="comment" ></textarea>
+                <textarea style={{overflow:"hidden"}} 
+                ref ={textAreaRef}
+                value={textAreaContent}
+                onChange={(e)=>handleKeyUp(e)} 
+                name="comment" ></textarea>
                 <div>
                 <button> <span>light</span> <span className="material-symbols-outlined">bolt</span></button>
                 </div>
