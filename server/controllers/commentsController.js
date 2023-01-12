@@ -32,6 +32,13 @@ module.exports ={
       }else{
         res.send("authentication fail user must login")
       }
+    },
+    getComments:(req,res)=>{
+      const id = req.params.id;
+      commentdb.find({lightId:id},(err,result)=>{
+        if(err) throw err;
+        res.json({comments:result})
+      })
     }
   
   }

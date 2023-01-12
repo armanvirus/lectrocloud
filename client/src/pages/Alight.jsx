@@ -6,6 +6,7 @@ import "../styles/alight.css"
 import BottomBar from "../components/BottomBar"
 import "../styles/posts.css"
 import axios from 'axios';
+import Comments from "../components/comments"
 
 
 
@@ -19,6 +20,7 @@ export default function Alight() {
     const [textAreaHeight, settextAreaHeight] = useState(50);
     const [textAreaContent, settextAreaContent] = useState("");
     const [isRefly, setisRefly] = useState(false);
+    const [comments, setcomments] = useState(null)
     const textAreaRef = useRef()
     const {        
         postData,
@@ -29,12 +31,17 @@ export default function Alight() {
       const filteredLight =  postData.filter((el)=> el._id == id)[0]
         setLight(filteredLight)
         setloading(false)
+        // search vailable comments
+        axios.get(`http://localhost:3300/user/comment/${id}`)
+        .then((response)=>{
+            setcomments(response.data.comments)
+        })
     },[])
 
 
     // useEffect(()=>{
-    //     console.log(textAreaContent)
-    //   },[textAreaContent])
+    //     console.log(comments)
+    //   },[comments])
 
 
 
@@ -94,33 +101,7 @@ export default function Alight() {
                 </div>
                 </div>
             </div>
-            <div className="comments">
-                <div className="comment">
-                    <div className="commentor-det">
-                        <img src={amin} alt="user"/>
-                        <div>@armanviruse</div>
-                        <div>2hrs</div>
-                    </div>
-                    <div className="comment-note">
-                        Lorem ipsum dolor sit amet, 
-                        consectetur  sed necessitatibus pariatur
-                    </div>
-                    <div className="reactions-sec">
-                <div className="like-btn">
-                    <span className="material-symbols-outlined">
-                        favorite
-                    </span>
-                    <span>10</span>
-                </div>
-                <div className="comment-btn">
-                    <span className="material-symbols-outlined">
-                        quick_phrases
-                    </span>
-                    <span>34</span>
-                </div>
-                </div>
-                </div>
-            </div>
+            {comments ? <Comments comments={comments}/> : <h3>Loading comments...</h3>}
             <div className="comment-form">
                 <textarea style={{overflow:"hidden"}} 
                 ref ={textAreaRef}
