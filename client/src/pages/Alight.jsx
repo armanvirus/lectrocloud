@@ -5,6 +5,8 @@ import {StateContext} from '../context/provider';
 import "../styles/alight.css"
 import BottomBar from "../components/BottomBar"
 import "../styles/posts.css"
+import axios from 'axios';
+
 
 
 
@@ -16,6 +18,7 @@ export default function Alight() {
     const [loading, setloading] = useState(true);
     const [textAreaHeight, settextAreaHeight] = useState(50);
     const [textAreaContent, settextAreaContent] = useState("");
+    const [isRefly, setisRefly] = useState(false);
     const textAreaRef = useRef()
     const {        
         postData,
@@ -29,8 +32,27 @@ export default function Alight() {
     },[])
 
 
+    // useEffect(()=>{
+    //     console.log(textAreaContent)
+    //   },[textAreaContent])
 
-    
+
+
+    const handleComment = ()=>{
+        const lectroToken = localStorage.getItem("lectroToken")
+        if(!isRefly){
+            axios.post("http://localhost:3300/user/comment",{
+                comment:textAreaContent,
+                lightId:id,
+                user:lectroToken,
+                images:null,
+                files:null
+            }).then((response)=>{
+                console.log(response.data)
+
+            })
+        }
+    }
 
     const handleKeyUp = (event)=>{
         settextAreaContent(event.target.value)
@@ -106,7 +128,7 @@ export default function Alight() {
                 onChange={(e)=>handleKeyUp(e)} 
                 name="comment" ></textarea>
                 <div>
-                <button> <span>light</span> <span className="material-symbols-outlined">bolt</span></button>
+                <button onClick={()=> handleComment()}> <span>light</span> <span className="material-symbols-outlined">bolt</span></button>
                 </div>
             </div>
             </div>
