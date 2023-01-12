@@ -5,12 +5,13 @@ const mongoose = require("mongoose"),
    const CommetSchema = new Schema({
            comment:{type:String},
            user:{type:Object},
+           reply:[{ttpe:Object}]
            images:[{ type: String }],
            files:[{ type: String }],
            likes:[{ type: String }],
-           author: {
+           mainLight: {
             type: mongoose.Schema.Types.ObjectId,
-            ref: 'studs'
+            ref: 'lights'
           },
            commentedOn:{ type: Date, 'default': Date.now }
         
