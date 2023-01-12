@@ -10,18 +10,27 @@ module.exports ={
         const newComment = new commentdb({
           comment,
           mainLight:lightId,
+          files,
+          images,
           user:{
             id:decoded.id,
             name:decoded.name,
             profile:decoded.profile
           },
-          
-          
+
+
+        })
+        
+        newComment.save((err,result)=>{
+          if(err) throw err;
+          res.send(result)
         })
      
         })
       
       
+      }else{
+        res.send("authentication fail user must login")
       }
     }
   
