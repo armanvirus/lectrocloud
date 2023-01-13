@@ -1,6 +1,7 @@
 import React,{useState} from 'react'
 import amin from "../assets/amin.png"
 import "../styles/alight.css"
+import moment from 'moment';
 
 export default function Comments(props) {
     const [loading, setloading] = useState(true)
@@ -12,7 +13,7 @@ export default function Comments(props) {
                     <div className="commentor-det">
                         <img src={el.user.profile} alt="user"/>
                         <div>@{el.user.name}</div>
-                        <div>2hrs</div>
+                        <div>{moment(el.commentedOn).startOf('minute').fromNow()}</div>
                     </div>
                     <div className="comment-note">
                         {el.comment}

@@ -3,6 +3,7 @@ import axios from 'axios'
 import "../styles/posts.css"
 import amin from "../assets/amin.png"
 import {Link} from "react-router-dom";
+import moment from "moment"
 
 export default function Posts(props) {
     const {postData} = props;
@@ -26,7 +27,7 @@ export default function Posts(props) {
             </div>
             <div className="post-content">
                 <p className="posted-user">{el.user.username}</p>
-                <p className="posted-on">{el.lightOn}</p>
+                <p className="posted-on">{moment(el.lightOn).startOf('minute').fromNow()}</p>
                 <div>
                     <div className="notes">
                         <p>

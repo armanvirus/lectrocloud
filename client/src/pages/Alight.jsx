@@ -1,9 +1,9 @@
 import React,{useRef,useEffect,useState,useContext} from 'react'
 import {useParams,useNavigate,useLocation} from 'react-router-dom';
+import moment from "moment"
 import amin from "../assets/amin.png"
 import {StateContext} from '../context/provider';
 import "../styles/alight.css"
-import BottomBar from "../components/BottomBar"
 import "../styles/posts.css"
 import axios from 'axios';
 import Comments from "../components/comments"
@@ -43,7 +43,10 @@ export default function Alight() {
     //     console.log(comments)
     //   },[comments])
 
-
+    const handleBack = ()=>{
+        navigateBack(-1)
+        console.log("back btn clicked")
+    }
 
     const handleComment = ()=>{
         const lectroToken = localStorage.getItem("lectroToken")
@@ -68,7 +71,7 @@ export default function Alight() {
         <div> 
             { loading ? <h1>Loading...</h1> : <div>
             <div className="top-commet-sec">
-                <button className="back-btn">
+                <button onClick={()=> handleBack()} className="back-btn">
                     <span className="material-symbols-outlined">keyboard_backspace</span>
                     <span>Back</span>
                 </button>
@@ -78,7 +81,7 @@ export default function Alight() {
                 <img src={amin} alt="user" className="profile-img"/>
                 <div className="light-pro-detail">
                     <div className="pro-username">{light.user.username}</div>
-                    <div className="light-date">{light.lightOn}</div>
+                    <div className="light-date">{ moment(light.lightOn).startOf('minute').fromNow()}</div>
                 </div>
             </div>
             <div className="comment-subject">
@@ -103,7 +106,7 @@ export default function Alight() {
             </div>
             {comments ? <Comments comments={comments}/> : <h3>Loading comments...</h3>}
             <div className="comment-form">
-                <textarea style={{overflow:"hidden"}} 
+                <textarea className="comment-box" style={{overflow:"hidden"}} 
                 ref ={textAreaRef}
                 value={textAreaContent}
                 onChange={(e)=>handleKeyUp(e)} 

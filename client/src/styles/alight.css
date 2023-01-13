@@ -104,7 +104,7 @@
     width: 100vw;
     box-shadow: .001px 1px .5px rgba(0,0,0,.09), .001px -1px .5px rgba(0,0,0,.09);
 }
-textarea{
+.comment-box{
     resize: none;
     width: 100%;
     height: 35px;
