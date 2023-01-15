@@ -8,7 +8,7 @@ export default function Comments(props) {
 
     const doFocus = (el)=>{
         props.setisRefly(true)
-        props.focusReply(el.user.name,el.user.id,el.user.profile)
+        props.focusReply(el.user.name,el.user.id,el.user.profile,el._id)
     }
     return (
         <div className="comments">

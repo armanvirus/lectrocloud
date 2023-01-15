@@ -41,14 +41,32 @@ module.exports ={
       })
     },
     doReply:(req,res)=>{
-      const {replyObj,user,commentId} = req.body;
+      const {replyObj,user,replyNote} = req.body;
+      console.log(replyObj.commentId)
       if(!user){
         res.json({msg:"user is not registered"})
       }else{
-        if(!commentId){
+        if(!replyObj.commentId){
           res.status(500).json({msg:"server error"})
         }else{
-          
+          jwt.verify(user, process.env.JWT_KEY,(jwterr,decoded)=>{
+            if (jwterr) throw jwterr;
+            commentdb.findByIdAndUpdate(replyObj.commentId,{$push:{"reply":{
+              reolyTo:replyObj,
+              replyFrom:{
+              username:decoded.name,
+              userid:decoded.id,
+              profile:"/src/assets/amin.png"
+              },
+              replyNote
+            } 
+          }},
+              function(err,updateResult){
+                if(err) throw err;
+                // console.log(result.likes, "added");
+                    res.json({updateResult});
+                }) 
+          })
     }
   
   }

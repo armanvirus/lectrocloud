@@ -52,9 +52,10 @@ export default function Alight() {
         console.log(err)
       })
     }
-        // search vailable comments
+        // search available comments
         axios.get(`http://localhost:3300/user/comment/${id}`)
         .then((response)=>{
+            console.log(response.data.comments)
             setcomments(response.data.comments)
         })
     },[])
@@ -69,7 +70,7 @@ export default function Alight() {
 
     const handleBack = ()=>{
         navigateBack(-1)
-        console.log("back btn clicked")
+        // console.log("back btn clicked")
     }
 
     const handleComment = ()=>{
@@ -90,7 +91,7 @@ export default function Alight() {
             {
                 replyObj,
                 user:localStorage.getItem("lectroToken"),
-                commentId:id
+                replyNote:textAreaContent
 
             }
         ).then((response)=>{
@@ -102,11 +103,12 @@ export default function Alight() {
     const handleKeyUp = (event)=>{
         settextAreaContent(event.target.value)
     }
-    const focusReply = (username,userid,profile)=>{
+    const focusReply = (username,userid,profile,commentId)=>{
         setreplyObj({
             username,
             userid,
-            profile
+            profile,
+            commentId
         })
         console.log(username,userid,profile)
     }

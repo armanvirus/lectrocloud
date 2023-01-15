@@ -8,6 +8,7 @@ const mongoose = require("mongoose"),
            images:[{ type: String }],
            files:[{ type: String }],
            likes:[{ type: String }],
+           reply:[{ type: Object }],
            lightId:{type:String,required:true},
            commentedOn:{ type: Date, 'default': Date.now }
         

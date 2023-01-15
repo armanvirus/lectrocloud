@@ -50,6 +50,8 @@ app.post('/user/reaction', interactions.reaction)
 //comment route
 app.post('/user/comment', comments.comments)
 app.get('/user/comment/:id', comments.getComments)
+// reply to a comment
+app.post('/user/reply', comments.doReply)
 // route to make an upload
 app.post('/user/light',(req,res)=>{
   const {user, image, notes} = req.body;
