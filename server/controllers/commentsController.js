@@ -5,7 +5,7 @@ module.exports ={
   comments:(req,res)=>{
     const {comment,lightId, user, images, files} = req.body;
     if(user){
-      jwt.verify(user, "JWT_SECRET", (error, decoded) =>{
+      jwt.verify(user, process.env.JWT_KEY, (error, decoded) =>{
         if(error) throw error;
         const newComment = new commentdb({
           comment,
@@ -39,6 +39,20 @@ module.exports ={
         if(err) throw err;
         res.json({comments:result})
       })
+    },
+    doReply:(req,res)=>{
+      const {replyObj,user,commentId} = req.body;
+      if(!user){
+        res.json({msg:"user is not registered"})
+      }else{
+        if(!commentId){
+          res.status(500).json({msg:"server error"})
+        }else{
+          
     }
   
   }
+
+}
+
+}

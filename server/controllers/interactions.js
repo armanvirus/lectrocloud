@@ -5,7 +5,7 @@ module.exports = {
        const {user,reactedLight} = req.body;
        console.log(reactedLight)
        var like;
-    jwt.verify(user, "JWT_SECRET", (error, decoded) =>{
+    jwt.verify(user, process.env.JWT_KEY, (error, decoded) =>{
         if(error) throw error;
 
         lights.findOne({_id:reactedLight},(err,result1)=>{

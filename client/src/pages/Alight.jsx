@@ -21,6 +21,7 @@ export default function Alight() {
     const [textAreaContent, settextAreaContent] = useState("");
     const [isRefly, setisRefly] = useState(false);
     const [comments, setcomments] = useState(null)
+    const [replyObj, setreplyObj] = useState('')
     const textAreaRef = useRef()
     const {        
         postData,
@@ -28,9 +29,29 @@ export default function Alight() {
     } = useContext(StateContext);
    
     useEffect(()=>{
+        const token =()=>{
+            let retrievedToken = localStorage.getItem('lectroToken');
+            if(retrievedToken == null){
+                return 0
+            }else{
+                return retrievedToken
+            }
+        }
+
+        if(postData){
       const filteredLight =  postData.filter((el)=> el._id == id)[0]
         setLight(filteredLight)
         setloading(false)
+    }else{
+        axios.get('http://localhost:3300/', {headers:{"Authorization":`Bearer ${token()}`}})
+      .then((res)=>{
+          setPostData(res.data.postData)
+        console.log(res)
+      })
+      .catch((err)=>{
+        console.log(err)
+      })
+    }
         // search vailable comments
         axios.get(`http://localhost:3300/user/comment/${id}`)
         .then((response)=>{
@@ -39,9 +60,12 @@ export default function Alight() {
     },[])
 
 
-    // useEffect(()=>{
-    //     console.log(comments)
-    //   },[comments])
+    useEffect(()=>{
+        if(postData){
+        const filteredLight =  postData.filter((el)=> el._id == id)[0]
+        setLight(filteredLight)
+        setloading(false)}
+      },[postData])
 
     const handleBack = ()=>{
         navigateBack(-1)
@@ -61,12 +85,44 @@ export default function Alight() {
                 console.log(response.data)
 
             })
+        }else{
+            axios.post('http://localhost:3300/user/reply',
+            {
+                replyObj,
+                user:localStorage.getItem("lectroToken"),
+                commentId:id
+
+            }
+        ).then((response)=>{
+            console.log(response)
+        })
         }
     }
 
     const handleKeyUp = (event)=>{
         settextAreaContent(event.target.value)
     }
+    const focusReply = (username,userid,profile)=>{
+        setreplyObj({
+            username,
+            userid,
+            profile
+        })
+        console.log(username,userid,profile)
+    }
+
+    const textAreaBlur = (event)=>{
+        if(!event.target.value){
+            setisRefly(false)
+            setreplyObj('')
+        }
+    }
+
+    useEffect(()=>{
+        if(isRefly){
+            textAreaRef.current.focus()
+        }
+    },[isRefly])
     return (
         <div> 
             { loading ? <h1>Loading...</h1> : <div>
@@ -104,10 +160,12 @@ export default function Alight() {
                 </div>
                 </div>
             </div>
-            {comments ? <Comments comments={comments}/> : <h3>Loading comments...</h3>}
+            {comments ? <Comments setisRefly={setisRefly} focusReply={focusReply} comments={comments}/> : <h3>Loading comments...</h3>}
             <div className="comment-form">
+                {isRefly && replyObj && (<div className="reply-tag">{`replying to @${replyObj.username}` }</div>)}
                 <textarea className="comment-box" style={{overflow:"hidden"}} 
                 ref ={textAreaRef}
+                onBlur={(e)=> textAreaBlur(e)}
                 value={textAreaContent}
                 onChange={(e)=>handleKeyUp(e)} 
                 name="comment" ></textarea>

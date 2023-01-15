@@ -5,6 +5,11 @@ import moment from 'moment';
 
 export default function Comments(props) {
     const [loading, setloading] = useState(true)
+
+    const doFocus = (el)=>{
+        props.setisRefly(true)
+        props.focusReply(el.user.name,el.user.id,el.user.profile)
+    }
     return (
         <div className="comments">
             {props.comments.map((el,index)=>{
@@ -26,7 +31,7 @@ export default function Comments(props) {
                     <span>10</span>
                 </div>
                 <div className="comment-btn">
-                    <span className="material-symbols-outlined">
+                    <span onClick={()=> doFocus(el)} className="material-symbols-outlined">
                         quick_phrases
                     </span>
                     <span>34</span>

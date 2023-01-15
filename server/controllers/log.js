@@ -51,7 +51,7 @@ const Log = {
                             level:savedStud.level,
                             academicSession:savedStud.academicSession,
                             name:savedStud.name}, 
-                            "JWT_SECRET");
+                            process.env.JWT_KEY);
                          //Send the JWT to the client in the response
                         res.status(200).json({token})
                         })
@@ -86,7 +86,7 @@ console.log(req.body)
                             level:stud.level,
                             academicSession:stud.academicSession,
                             name:stud.name}, 
-                            "JWT_SECRET");
+                            process.env.JWT_KEY);
 
                         // Send the JWT to the client in the response
                         res.status(200).json({ token })

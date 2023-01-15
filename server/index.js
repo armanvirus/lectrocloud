@@ -11,17 +11,19 @@ const Studs = require("./db/Stud")
 const comments = require("./controllers/commentsController")
 const interactions = require('./controllers/interactions')
 const multer = require('multer')
+const dotenv = require('dotenv').config()
 
 
 
 db();
+console.log(process.env.MONGO_URI)
 
 app.use(bodyParser.json({ limit: '50mb' }))
 app.use(bodyParser.urlencoded({ limit: '50mb', extended: true }))
 
 app.use(cors({
   credentials:true,
-  origin:'http://localhost:5173'}));
+  origin:process.env.CLIENT_URI}));
   app.get('/', (req, res) => {
     verifiedData(req,res)
   })
@@ -36,8 +38,6 @@ app.use(cors({
     }
   })
   
-// Set up a secret key for signing JWTs
-const JWT_SECRET = 'your-secret-key'
 
 // Set up a route for handling login/sign requests
 app.post('/sign', logs.sign )
@@ -55,7 +55,7 @@ app.post('/user/light',(req,res)=>{
   const {user, image, notes} = req.body;
   if(user){
 
-    jwt.verify(user, "JWT_SECRET", (error, decodedUser) => {
+    jwt.verify(user, process.env.JWT_KEY, (error, decodedUser) => {
       if (error) {
         console.log(error)
         res.send(error)
@@ -90,7 +90,7 @@ app.post('/user/light',(req,res)=>{
 
 
 
-
-app.listen(3300, () => {
-  console.log('Server listening on port 3300')
+const PORT = process.env.PORT || 3300
+app.listen(PORT , () => {
+  console.log(`Server listening on port ${PORT}`)
 })
