@@ -158,7 +158,7 @@ export default function Alight() {
                     <span className="material-symbols-outlined">
                         chat_bubble
                     </span>
-                    <span>34</span>
+                    <span>{comments ? comments.length : 0}</span>
                 </div>
                 </div>
             </div>

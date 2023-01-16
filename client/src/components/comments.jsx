@@ -37,7 +37,7 @@ export default function Comments(props) {
                     <span onClick={()=> doFocus(el)} className="material-symbols-outlined">
                         quick_phrases
                     </span>
-                    <span>34</span>
+                    <span>{el.reply.length}</span>
                 </div>
                 </div>
                 </div>

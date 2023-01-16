@@ -44,7 +44,7 @@ export default function Reply(props) {
                     className="material-symbols-outlined">
                         quick_phrases
                     </span>
-                    <span>34</span>
+                    <span>reply</span>
                 </div>
                 </div>
                 </div>
