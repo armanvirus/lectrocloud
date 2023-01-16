@@ -52,7 +52,7 @@ module.exports ={
           jwt.verify(user, process.env.JWT_KEY,(jwterr,decoded)=>{
             if (jwterr) throw jwterr;
             commentdb.findByIdAndUpdate(replyObj.commentId,{$push:{"reply":{
-              reolyTo:replyObj,
+              replyTo:replyObj,
               replyFrom:{
               username:decoded.name,
               userid:decoded.id,

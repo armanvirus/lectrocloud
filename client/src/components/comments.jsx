@@ -2,6 +2,7 @@ import React,{useState} from 'react'
 import amin from "../assets/amin.png"
 import "../styles/alight.css"
 import moment from 'moment';
+import Reply from "./Reply"
 
 export default function Comments(props) {
     const [loading, setloading] = useState(true)
@@ -14,6 +15,8 @@ export default function Comments(props) {
         <div className="comments">
             {props.comments.map((el,index)=>{
                 return(
+                    <>
+                        {console.log(el.reply.length != 0)}
                     <div className="comment">
                     <div className="commentor-det">
                         <img src={el.user.profile} alt="user"/>
@@ -38,6 +41,9 @@ export default function Comments(props) {
                 </div>
                 </div>
                 </div>
+                {el.reply.length != 0 && (<Reply setisRefly={props.setisRefly}
+                    focusReply={props.focusReply} replies={el.reply} />)}
+                </>
                 )
             })}
                 

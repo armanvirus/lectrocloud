@@ -147,3 +147,45 @@
     color: #f2f2f2;
     font-family: "JosefinSans-SemiBold";
 }
+
+/* styles for replies */
+.reply{
+    padding: 5px 20px;
+    font-family: apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    font-size: 14px;
+    box-shadow: 0 0 1px rgba(0,0,0,.3);
+    margin: 5px 0 3px 20px;
+}
+
+.reply-chain{
+    display: flex;
+    align-items: center;
+    border-radius: 15px;
+    margin-bottom: 5px;
+}
+
+.reply-chain img{
+    height: 15px;
+    width: 15px;
+    border-radius: 50%;
+    margin: 0;
+    padding: 0;
+}
+
+.reply-chain  div{
+    /* padding: 0 2px; */
+    font-weight: 400;
+    font-size: 10px;
+    font-style: oblique;
+
+}
+
+.reply-chain div:first-child,
+.reply-chain div:last-child{
+    display: flex;
+    font-size: 12px;
+    margin-right:2px;
+    align-items: center;
+    justify-content: flex-start;
+    font-weight: 500;
+}
