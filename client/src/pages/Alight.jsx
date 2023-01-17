@@ -7,6 +7,7 @@ import "../styles/alight.css"
 import "../styles/posts.css"
 import axios from 'axios';
 import Comments from "../components/comments"
+import Loader from '../components/loader';
 
 
 
@@ -127,7 +128,7 @@ export default function Alight() {
     },[isRefly])
     return (
         <div> 
-            { loading ? <h1>Loading...</h1> : <div>
+            { loading ? <Loader/> : <div>
             <div className="top-commet-sec">
                 <button onClick={()=> handleBack()} className="back-btn">
                     <span className="material-symbols-outlined">keyboard_backspace</span>

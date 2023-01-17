@@ -3,6 +3,7 @@ import axios from "axios"
 import Posts from "../components/Posts"
 import {StateContext} from '../context/provider';
 import amin from "../assets/amin.png"
+import Loader from '../components/loader';
 
 
 export default function Home() {
@@ -46,9 +47,11 @@ export default function Home() {
     },[])
     
     return (
-        <div>{ loading ? <h1>loading...</h1> :
+        <div>
+        { loading ? <Loader/> :
            <Posts postData={postData}/>
         } 
+        
         </div>
     )
 }

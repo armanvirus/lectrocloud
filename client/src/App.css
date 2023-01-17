@@ -1,3 +1,56 @@
+@font-face {
+  font-family: 'JosefinSans-SemiBold';
+  src: url('./styles/Fonts/JosefinSans-SemiBold.ttf');
+}
+@font-face {
+  font-family: 'RobotoCondensed-Regular';
+  src: url('./styles//Fonts/RobotoCondensed-Regular.ttf');
+}
+@font-face {
+  font-family: 'Lato-Regular';
+  src: url('./styles/Fonts/Lato-Regular.ttf');
+}
 body{
   background: rgba(242,242,242,.4);
 }
+
+.loader{
+  width: 100vw;
+  height:60vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  
+}
+.loader-logo{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+.loader-logo span{
+  font-size: 60px;
+  /* color:rgba(55,125,255,1); */
+  color:rgba(16, 86, 216, 1);
+  animation: fadeInOut 3s infinite;
+}
+
+.loader-name{
+  font-size: 25px;
+  font-weight:500;
+  width: 100vw;
+  align-self: center;
+  text-align: center;
+  font-family: 'RobotoCondensed-Regular';
+  color:rgba(16, 86, 216, .6);
+  font-style: oblique;
+  margin-top: 10px;
+  
+}
+
+@keyframes fadeInOut {
+  0% { opacity: .4; }
+  50% { opacity: 1;  }
+  100% { opacity: .2; }
+}
+
