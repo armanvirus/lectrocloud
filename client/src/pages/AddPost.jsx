@@ -4,6 +4,7 @@ import React,{useState, useEffect} from 'react'
 import axios from "axios";
 import amin from "../assets/amin.png"
 import "../styles/addpost.css"
+import NoAuth from '../components/NoAuth';
 
 // console.log(jsPDF)
 
@@ -11,9 +12,10 @@ export default function AddPost() {
     const [selectedFile, setselectedFile] = useState("");
     const [previewUrl, setpreviewUrl] = useState('');
     const [notes, setnotes] = useState('');
+    const [isUserloged, setisUserloged] = useState('');
 
     useEffect(() => {
-        console.log(localStorage.getItem('lectroToken'))
+        setisUserloged(localStorage.getItem('lectroToken'))
     }, [])
     
     const inputChange = (e)=>{
@@ -46,6 +48,10 @@ export default function AddPost() {
 
     }
     return (
+        <>
+        {
+            !isUserloged ? <NoAuth/> : 
+       
         <div>
             <div className="light-container">
             <div className="active-user">
@@ -79,5 +85,7 @@ export default function AddPost() {
             </div>
             </div>
         </div>
+         }
+        </>
     )
 }

@@ -6,6 +6,7 @@ import amin from "../assets/amin.png"
 import Loader from '../components/loader';
 
 
+
 export default function Home() {
     // const [postData,setPostData] = useState('')
     // const [postData,setPostData] = useState('')
@@ -51,6 +52,7 @@ export default function Home() {
         { loading ? <Loader/> :
            <Posts postData={postData}/>
         } 
+        
         
         </div>
     )

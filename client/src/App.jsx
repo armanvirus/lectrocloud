@@ -13,6 +13,7 @@ import Profile from "./pages/Profile"
 import AddPost from "./pages/AddPost"
 import Alight from "./pages/Alight"
 import "./App.css"
+import NotFound from './pages/NotFound';
 
 function App() {
 
@@ -31,7 +32,7 @@ function App() {
         </Route>
           <Route path='/helpers/alight/:id' element={<Alight/>}/>   
         
-        {/* <Route path="/*" element={<ErrorNotFound />} /> */}
+        <Route path="/*" element={<NotFound/> } />
       </Routes>
       </Router>
       {/* <Login/> */}

@@ -19,6 +19,7 @@
   padding: 10px 20px;
   border-top-right-radius: 15px;
   border-top-left-radius: 15px;
+  z-index: 10;
 }
 .bBar a{
   /* background: rgba(0, 0,0,.03); */
@@ -38,6 +39,7 @@
 /* top bar */
 .topbar{
   position: fixed;
+  z-index: 10;
 
 }
 .top-bar-search{
