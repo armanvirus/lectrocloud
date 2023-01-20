@@ -10,7 +10,6 @@ import Loader from '../components/loader';
 export default function Home() {
     // const [postData,setPostData] = useState('')
     // const [postData,setPostData] = useState('')
-    // const [loading,setLoading] = useState(true)
     //pulling data from context
     const {        
         loading,
@@ -52,8 +51,6 @@ export default function Home() {
         { loading ? <Loader/> :
            <Posts postData={postData}/>
         } 
-        
-        
         </div>
     )
 }

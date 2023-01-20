@@ -8,6 +8,7 @@ import "../styles/posts.css"
 import axios from 'axios';
 import Comments from "../components/comments"
 import Loader from '../components/loader';
+import NoAuth from '../components/NoAuth';
 
 
 
@@ -23,6 +24,7 @@ export default function Alight() {
     const [isRefly, setisRefly] = useState(false);
     const [comments, setcomments] = useState(null)
     const [replyObj, setreplyObj] = useState('')
+    const [displayNoAuth,setdisplayNoAuth] = useState(false);
     const textAreaRef = useRef()
     const {        
         postData,
@@ -76,28 +78,32 @@ export default function Alight() {
 
     const handleComment = ()=>{
         const lectroToken = localStorage.getItem("lectroToken")
-        if(!isRefly){
-            axios.post("http://localhost:3300/user/comment",{
-                comment:textAreaContent,
-                lightId:id,
-                user:lectroToken,
-                images:null,
-                files:null
-            }).then((response)=>{
-                console.log(response.data)
-
-            })
+        if(!lectroToken){
+            setdisplayNoAuth(true)
         }else{
-            axios.post('http://localhost:3300/user/reply',
-            {
-                replyObj,
-                user:localStorage.getItem("lectroToken"),
-                replyNote:textAreaContent
-
+            if(!isRefly){
+                axios.post("http://localhost:3300/user/comment",{
+                    comment:textAreaContent,
+                    lightId:id,
+                    user:lectroToken,
+                    images:null,
+                    files:null
+                }).then((response)=>{
+                    console.log(response.data)
+    
+                })
+            }else{
+                axios.post('http://localhost:3300/user/reply',
+                {
+                    replyObj,
+                    user:localStorage.getItem("lectroToken"),
+                    replyNote:textAreaContent
+    
+                }
+            ).then((response)=>{
+                console.log(response)
+            })
             }
-        ).then((response)=>{
-            console.log(response)
-        })
         }
     }
 
@@ -126,8 +132,22 @@ export default function Alight() {
             textAreaRef.current.focus()
         }
     },[isRefly])
+
+    const authWarnClose = ()=>{
+        setdisplayNoAuth(false)
+    }
     return (
-        <div> 
+        <div>
+            {displayNoAuth && (
+            <div>
+                <button style={{top:"50px",right:"30px"}} onClick={()=> authWarnClose()} className="auth-err-close">
+                    <span className="material-symbols-outlined">
+                        close
+                    </span>
+                </button>
+                <NoAuth/>
+            </div>
+        )} 
             { loading ? <Loader/> : <div>
             <div className="top-commet-sec">
                 <button onClick={()=> handleBack()} className="back-btn">

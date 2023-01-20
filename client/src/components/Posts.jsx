@@ -4,21 +4,42 @@ import "../styles/posts.css"
 import amin from "../assets/amin.png"
 import {Link} from "react-router-dom";
 import moment from "moment"
+import NoAuth from './NoAuth';
 
 export default function Posts(props) {
     const {postData} = props;
+    const [displayNoAuth,setdisplayNoAuth] = useState(false)
     // const [reactedLight, setreactedLight] = useState('')
     //console.log(postData)
     const handleReact = (e,reactedLight)=>{
-        axios.post("http://localhost:3300/user/reaction",{
+        const user = localStorage.getItem('lectrocloud');
+        if(!user){
+            setdisplayNoAuth(true)
+        }else{
+            axios.post("http://localhost:3300/user/reaction",{
             user:localStorage.getItem("lectroToken"),
             reactedLight
         }).then((response)=>{
             console.log(response)
         })
+        }
+    }
+
+    const authWarnClose = ()=>{
+        setdisplayNoAuth(false)
     }
     return (
         <>
+        {displayNoAuth && (
+            <div>
+                <button onClick={()=> authWarnClose()} className="auth-err-close">
+                    <span className="material-symbols-outlined">
+                        close
+                    </span>
+                </button>
+                <NoAuth/>
+            </div>
+        )}
         { postData.map((el,elIndex)=>{
             return(
                 <div className="post">
