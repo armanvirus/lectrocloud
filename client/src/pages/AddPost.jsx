@@ -5,6 +5,7 @@ import axios from "axios";
 import amin from "../assets/amin.png"
 import "../styles/addpost.css"
 import NoAuth from '../components/NoAuth';
+import Loader from '../components/loader';
 
 // console.log(jsPDF)
 
@@ -13,9 +14,11 @@ export default function AddPost() {
     const [previewUrl, setpreviewUrl] = useState('');
     const [notes, setnotes] = useState('');
     const [isUserloged, setisUserloged] = useState('');
+    const [isLoading, setisLoading] = useState(true)
 
     useEffect(() => {
         setisUserloged(localStorage.getItem('lectroToken'))
+        setisLoading(false)
     }, [])
     
     const inputChange = (e)=>{
@@ -49,9 +52,9 @@ export default function AddPost() {
     }
     return (
         <>
+        {isLoading ? <Loader/> : <>
         {
-            !isUserloged ? <NoAuth/> : 
-       
+          !isUserloged ? <NoAuth/> :      
         <div>
             <div className="light-container">
             <div className="active-user">
@@ -85,6 +88,7 @@ export default function AddPost() {
             </div>
             </div>
         </div>
+         }</>
          }
         </>
     )

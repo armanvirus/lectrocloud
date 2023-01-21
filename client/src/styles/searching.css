@@ -1,0 +1,28 @@
+.search-contents{
+    padding: 20px 30px;
+}
+
+.search-contents a{
+    display:block;
+    font-family: apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+}
+p.search-main{
+    line-height:normal;
+    /* text-align: justify; */
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp:1;
+    font-size: 14px;
+    overflow: hidden;
+    
+}
+.search-cont-date{
+    color: #444;
+    font-size: 10px;
+    padding-top: 10px;
+}
+.search-contents > div{
+    padding: 3px 0;
+    margin: 6px 0;
+    
+}

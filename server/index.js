@@ -10,8 +10,12 @@ const light = require("./db/lights")
 const Studs = require("./db/Stud")
 const comments = require("./controllers/commentsController")
 const interactions = require('./controllers/interactions')
+const search = require('./controllers/search')
 const multer = require('multer')
 const dotenv = require('dotenv').config()
+const claudinary = require("cloudinary");
+
+
 
 
 
@@ -27,7 +31,14 @@ app.use(cors({
   app.get('/', (req, res) => {
     verifiedData(req,res)
   })
+  // config claudinar
+  claudinary.config({
+    claud_name:process.env.CLAUD_NAME,
+    api_key:API_KEY,
+    api_secret:API_SECRET
+  })
 
+  
   app.use(express.static('../uploads'))
 
   
@@ -52,9 +63,15 @@ app.post('/user/comment', comments.comments)
 app.get('/user/comment/:id', comments.getComments)
 // reply to a comment
 app.post('/user/reply', comments.doReply)
+// handle search
+app.post('/user/search', search.search)
 // route to make an upload
 app.post('/user/light',(req,res)=>{
   const {user, image, notes} = req.body;
+  // claudinary.uploader.upload(image,{
+  //   use_filename: true, 
+  //   unique_filename: false,
+  //   folder:"lectrocloud_post" },(err,result)=>console.log(err))
   if(user){
 
     jwt.verify(user, process.env.JWT_KEY, (error, decodedUser) => {

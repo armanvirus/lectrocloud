@@ -1,16 +1,22 @@
-import React, {useState} from 'react'
+import React, {useState,useContext, useEffect} from 'react'
 import axios from 'axios'
 import "../styles/posts.css"
 import amin from "../assets/amin.png"
+import {StateContext} from '../context/provider';
 import {Link} from "react-router-dom";
 import moment from "moment"
 import NoAuth from './NoAuth';
+import Searching from './Searching';
 
 export default function Posts(props) {
     const {postData} = props;
     const [displayNoAuth,setdisplayNoAuth] = useState(false)
     // const [reactedLight, setreactedLight] = useState('')
     //console.log(postData)
+    const { isSearching, 
+        setisSearching,
+        searchResult, 
+        setsearchResult} = useContext(StateContext);
     const handleReact = (e,reactedLight)=>{
         const user = localStorage.getItem('lectrocloud');
         if(!user){
@@ -28,6 +34,7 @@ export default function Posts(props) {
     const authWarnClose = ()=>{
         setdisplayNoAuth(false)
     }
+    useEffect(()=>{console.log(searchResult)},[searchResult])
     return (
         <>
         {displayNoAuth && (
@@ -40,7 +47,7 @@ export default function Posts(props) {
                 <NoAuth/>
             </div>
         )}
-        { postData.map((el,elIndex)=>{
+        { isSearching ? <Searching/> : postData.map((el,elIndex)=>{
             return(
                 <div className="post">
             <div className="avatar">
