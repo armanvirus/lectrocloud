@@ -183,7 +183,7 @@ export default function Alight() {
                 </div>
                 </div>
             </div>
-            {comments ? <Comments setisRefly={setisRefly} focusReply={focusReply} comments={comments}/> : <h3>Loading comments...</h3>}
+            {comments ? <> {comments.length > 0 ? <Comments setisRefly={setisRefly} focusReply={focusReply} comments={comments}/> : <p className="no-comment"> No comment for this light</p> } </> : <h4>Loading comments...</h4>}
             <div className="comment-form">
                 {isRefly && replyObj && (<div className="reply-tag">{`replying to @${replyObj.username}` }</div>)}
                 <textarea className="comment-box" style={{overflow:"hidden"}} 

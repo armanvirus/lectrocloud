@@ -9,18 +9,17 @@ export default function Searching() {
             searchResult } = useContext(StateContext);
     return (
         <div className="search-contents">
-            {searchResult && searchResult.map((el,i)=>{
+            {searchResult && ( searchResult.length > 0 ? searchResult.map((el,i)=>{
                 return(
                     <div>
-
                         <Link to={`/helpers/alight/${el._id}`}>
                         <p><span>by</span> @{el.user.username}</p>
                         <p className="search-main">{el.note}</p>
-                        <p className="posted-on">{moment(el.lightOn).startOf('minute').fromNow()}</p>
+                        <p className="search-cont-date">{moment(el.lightOn).startOf('minute').fromNow()}</p>
                         </Link>
                     </div>     
                 )
-            })}
+            }) : <p className="no-search"> <span>No search result found</span></p>) }
         </div>
     )
 }

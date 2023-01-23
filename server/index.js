@@ -34,8 +34,8 @@ app.use(cors({
   // config claudinar
   claudinary.config({
     claud_name:process.env.CLAUD_NAME,
-    api_key:API_KEY,
-    api_secret:API_SECRET
+    api_key:process.env.API_KEY,
+    api_secret:process.env.API_SECRET
   })
 
   
