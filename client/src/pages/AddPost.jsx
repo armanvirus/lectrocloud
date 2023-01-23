@@ -15,6 +15,7 @@ export default function AddPost() {
     const [notes, setnotes] = useState('');
     const [isUserloged, setisUserloged] = useState('');
     const [isLoading, setisLoading] = useState(true)
+    const [typeErr, settypeErr] = useState("")
 
     useEffect(() => {
         setisUserloged(localStorage.getItem('lectroToken'))
@@ -23,7 +24,17 @@ export default function AddPost() {
     
     const inputChange = (e)=>{
         const file = e.target.files[0]
-        previewFile(file);
+        setpreviewUrl('')
+        // console.log(file.type)
+        if(file.type === "image/jpeg" || file.type === "image/png" || file.type === "image/jpg" || file.type ==="image/gif"){
+            if(file.size > 10485760){
+                settypeErr("maximum image size is 10mb")
+            }else{
+                previewFile(file)
+            }
+        }else{
+            settypeErr("The selected file is not supported")
+        }
     }
 
     const previewFile = (file)=>{
@@ -80,8 +91,11 @@ export default function AddPost() {
             </div>
             {
                 previewUrl && (
-                    <img className="preview-image" src={previewUrl} alt="something is wrong"/>
+                    <img className="preview-image" src={previewUrl} alt={typeErr}/>
                 )
+            }
+            {
+                typeErr  && !previewUrl && (<div>{typeErr}</div>)
             }
             <div className="send-btn">
             <button onClick={()=>{handleLight()}}> <span> light </span> <span className="material-symbols-outlined">bolt</span> </button>

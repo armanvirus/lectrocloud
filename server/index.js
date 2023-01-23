@@ -1,3 +1,4 @@
+const dotenv = require('dotenv').config()
 const express = require('express')
 const app = express()
 const jwt = require('jsonwebtoken');
@@ -12,15 +13,15 @@ const comments = require("./controllers/commentsController")
 const interactions = require('./controllers/interactions')
 const search = require('./controllers/search')
 const multer = require('multer')
-const dotenv = require('dotenv').config()
-const claudinary = require("cloudinary");
+const claudinary = require("cloudinary").v2;
 
 
 
 
 
 db();
-console.log(process.env.MONGO_URI)
+
+console.log(process.env.CLOUDINARY_URL)
 
 app.use(bodyParser.json({ limit: '50mb' }))
 app.use(bodyParser.urlencoded({ limit: '50mb', extended: true }))
@@ -32,11 +33,11 @@ app.use(cors({
     verifiedData(req,res)
   })
   // config claudinar
-  claudinary.config({
-    claud_name:process.env.CLAUD_NAME,
-    api_key:process.env.API_KEY,
-    api_secret:process.env.API_SECRET
-  })
+  // claudinary.config({
+  //   claud_name:process.env.CLAUD_NAME,
+  //   api_key:process.env.API_KEY,
+  //   api_secret:process.env.API_SECRET
+  // })
 
   
   app.use(express.static('../uploads'))
@@ -68,10 +69,7 @@ app.post('/user/search', search.search)
 // route to make an upload
 app.post('/user/light',(req,res)=>{
   const {user, image, notes} = req.body;
-  // claudinary.uploader.upload(image,{
-  //   use_filename: true, 
-  //   unique_filename: false,
-  //   folder:"lectrocloud_post" },(err,result)=>console.log(err))
+  var imgUrl, fileUrl;
   if(user){
 
     jwt.verify(user, process.env.JWT_KEY, (error, decodedUser) => {
@@ -79,21 +77,34 @@ app.post('/user/light',(req,res)=>{
         console.log(error)
         res.send(error)
       } else {
-        
+        if(image){
+        }
+        claudinary.uploader.upload(image,{
+          use_filename: true, 
+          unique_filename: false,
+          folder:"lectrocloud_post" },(err,result)=>{
+            if(err){
+              //send the err
+              res.send(err)
+            }else{
+              //save the post
+              const newlight = new light({
+                user:{username:decodedUser.name},
+                note:notes,
+                images:[image && (result.url)],
+                files:[""],
+                likes:[""],
+                level:decodedUser.level,
+                academicSession:decodedUser.academicSession,
+                author:decodedUser.id
+              })
+              newlight.save((saveErr,saveUser)=>{
+                res.send(saveUser)
+              })
+            }
+          })
           // console.log(foundUser)
-          const newlight = new light({
-            user:{username:decodedUser.name},
-            note:notes,
-            images:[image],
-            files:[""],
-            likes:[""],
-            level:decodedUser.level,
-            academicSession:decodedUser.academicSession,
-            author:decodedUser.id
-          })
-          newlight.save((saveErr,saveUser)=>{
-            res.send(newlight)
-          })
+          
           
        
       }
