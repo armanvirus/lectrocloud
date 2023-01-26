@@ -1,0 +1,132 @@
+@font-face {
+    font-family: 'lato-bold';
+    src: url('./Fonts/Lato-Bold.ttf') format('truetype');
+  }
+
+  @font-face {
+    font-family: 'robotoCondensed-bold';
+    src: url('./Fonts/RobotoCondensed-Bold.ttf') format('truetype');
+  }
+
+  @font-face {
+    font-family: 'robotoCondensed-light';
+    src: url('./Fonts/RobotoCondensed-Light.ttf') format('truetype');
+  }
+  
+.login-container{
+    width: 100vw;
+    height: 100vh;
+    background: rgb(255,255,255);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-container form,
+.login-container .sign-form{
+    height: 100%;
+    width: 100%;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.log-sec-a{
+    padding: 15px 0;
+}
+
+.log-sec-a p:first-child{
+    font-size: 30px;
+    font-weight: 600;
+    font-family: robotoCondensed-bold;
+}
+
+.log-sec-a p:nth-child(2){
+    font-size: 18px;
+    color: #001;
+}
+
+.log-sec-a > p,.log-sec-a > div{
+    width: 100%;
+    margin: 25px 0;
+}
+
+.log-sec-a > p{
+    text-align: center;
+    color: #001;
+}
+
+/* .fields{
+    margin: 8px 0;
+} */
+.fields input{
+    height: 35px;
+    width: 100%;
+    margin: 8px 0;
+    padding: 5px 20px;
+    border-radius: 5px;
+    background: rgb(255,255,255);
+    outline: none;
+    border: solid 0.5px rgba(0,0,17,.2);
+}
+
+.fields input::placeholder{
+    color: #001;
+}
+
+.visibility{
+    height: 25px;
+    width: 25px;
+    background: transparent;
+    position: absolute;
+    right:10px;
+    cursor: pointer;
+    transform: translate(-30px,-38px)
+}
+
+.log-check{
+    margin: 8px 0;
+    color: #001;
+}
+
+.log-sec-b,.log-sec-b{
+    width: 100%;
+}
+
+.log-sec-b button{
+    height: 35px;
+    width: 100%;
+    display: inline-block;
+    margin: 15px 0;
+    padding: 5px 20px;
+    color: white;
+    background: rgb(55,125,255);
+    outline: none;
+    border: none;
+    box-shadow: 0 0 3px 2px rgba(51,133,255,.4);
+    border-radius: 5px;
+    font-weight: 500;
+    font-size:16px;
+}
+.log-sec-b-c button{
+    width: 100%;
+    height: 35px;
+    margin: 5px;
+    border: none;
+    outline: none;
+    background: rgb(55,125,255);
+    border-radius: 10px;
+    color: #f2f2f2;
+    box-shadow: 0 0 3px 2px rgba(51,133,255,.4);
+}
+.log-sec-b > p, .log-sec-b > a{
+    text-align: center;
+    font-size: 16px;
+}
+.log-sec-b > a{
+    display: block;
+    text-decoration: none;
+    color: rgb(55,125,255);
+    cursor: pointer;
+}
