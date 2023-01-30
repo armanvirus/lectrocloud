@@ -9,6 +9,7 @@ import axios from 'axios';
 import Comments from "../components/comments"
 import Loader from '../components/loader';
 import NoAuth from '../components/NoAuth';
+import Header from '../components/Header';
 
 
 
@@ -149,13 +150,7 @@ export default function Alight() {
             </div>
         )} 
             { loading ? <Loader/> : <div>
-            <div className="top-commet-sec">
-                <button onClick={()=> handleBack()} className="back-btn">
-                    <span className="material-symbols-outlined">keyboard_backspace</span>
-                    <span>Back</span>
-                </button>
-            </div>
-            <div className="top-commet-sec-psedo"></div>
+             <Header/>
             <div className="light-user">
                 <img src={amin} alt="user" className="profile-img"/>
                 <div className="light-pro-detail">
