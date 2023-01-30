@@ -5,6 +5,7 @@
 .top-commet-sec{
     height: 50px;
     display: flex;
+    justify-content: space-between;
     position: fixed;
     top: 0;
     background: rgba(249,249,249,.98);

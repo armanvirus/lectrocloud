@@ -1,10 +1,12 @@
 import React from 'react'
 import amin from "../assets/amin.png"
 import "../styles/profile.css"
+import Header from '../components/Header';
 
 export default function Profile() {
     return (
         <div className="main-profile">
+            <Header/>
             <div className="top-most-profile">
             <div className="profile-img">
                 <img src={amin} alt=""/>
