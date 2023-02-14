@@ -14,6 +14,8 @@ const interactions = require('./controllers/interactions')
 const search = require('./controllers/search')
 const multer = require('multer')
 const claudinary = require("cloudinary").v2;
+const parseToken = require("./utils/parseToken")
+const randomLights = require("./utils/randomLights")
 
 
 
@@ -112,7 +114,27 @@ app.post('/user/light',(req,res)=>{
   }
 })
 
+app.get("/user/profile",async(req,res)=>{
+  const token = await parseToken(req);
+  var user;
+  if(!token){
+    return res.json({ code: 401, msg: "authentication failed" })
+  }
 
+  try{
+    const student = await Studs.findOne({_id:token.id},"_id idNum name level academicSession")
+    const lights = await light.find({author:token.id})
+    .sort("-lightOn")
+    .limit(10)
+    user = {student, lights}
+    res.status(200)
+    .json(user)
+  }catch(err){
+    res.status(501).json({msg:"server error"})
+    console.log(err)
+  }
+  // res.send(token)
+})
 
 
 

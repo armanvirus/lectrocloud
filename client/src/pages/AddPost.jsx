@@ -6,6 +6,7 @@ import amin from "../assets/amin.png"
 import "../styles/addpost.css"
 import NoAuth from '../components/NoAuth';
 import Loader from '../components/loader';
+import Sending from '../components/Sending';
 
 // console.log(jsPDF)
 
@@ -15,7 +16,8 @@ export default function AddPost() {
     const [notes, setnotes] = useState('');
     const [isUserloged, setisUserloged] = useState('');
     const [isLoading, setisLoading] = useState(true)
-    const [typeErr, settypeErr] = useState("")
+    const [typeErr, settypeErr] = useState("");
+    const [isLighting,setisLighting] = useState(false);
 
     useEffect(() => {
         setisUserloged(localStorage.getItem('lectroToken'))
@@ -48,22 +50,30 @@ export default function AddPost() {
 
     const handleLight = ()=>{
         if(previewUrl || notes){
+            setisLighting(true)
             axios.post('http://localhost:3300/user/light',{
                 image:previewUrl,
                 notes,
                 user:localStorage.getItem('lectroToken')
             }).then((response)=>{
                 console.log(response)
+                setisLighting(false)
+                setpreviewUrl("")
+                setnotes("");
+            }).catch((error)=>{
+                setisLighting(false)
+                console.log(error);
             })
         }else{
 
-            console.log("none of the is present")
+            // console.log("none of the is present")
         }
 
     }
     return (
         <>
         {isLoading ? <Loader/> : <>
+        {isLighting && <Sending/>}
         {
           !isUserloged ? <NoAuth/> :      
         <div>
@@ -72,7 +82,7 @@ export default function AddPost() {
                 <img src={amin} alt="user-image"/>
                 
             </div>
-            <textarea onChange={(e)=>{
+            <textarea value={notes} onChange={(e)=>{
                setnotes(e.target.value)
             }} placeholder="Is there something new?" name="notes"></textarea>
             <div className="files">
@@ -98,7 +108,7 @@ export default function AddPost() {
                 typeErr  && !previewUrl && (<div>{typeErr}</div>)
             }
             <div className="send-btn">
-            <button onClick={()=>{handleLight()}}> <span> light </span> <span className="material-symbols-outlined">bolt</span> </button>
+            <button onClick={()=>{handleLight()}} > <span> light </span> <span className="material-symbols-outlined">bolt</span> </button>
             </div>
             </div>
         </div>

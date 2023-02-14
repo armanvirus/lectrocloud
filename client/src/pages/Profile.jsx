@@ -1,10 +1,28 @@
-import React from 'react'
+import React,{useEffect, useState} from 'react'
 import amin from "../assets/amin.png"
 import "../styles/profile.css"
 import Header from '../components/Header';
+import axios from "axios"
+import {token} from "../utils/Auths"
+import Posts from '../components/Posts';
+import Loader from '../components/loader';
+import {serverUrl} from "../utils/Datum"
 
 export default function Profile() {
+    const [isLoading,setisLoading] = useState(true);
+    const [user, setUser] = useState("")
+    useEffect(()=>{
+        axios.defaults.withCredentials = true;
+        axios.get(`${serverUrl}/user/profile`,{headers:{"Authorization":`Bearer ${token()}`}})
+        .then((response)=>{
+            setUser(response.data)
+            setisLoading(false)
+        }
+    ).catch((err)=>console.log(err))
+    },[''])
     return (
+        <>
+        {isLoading ? <Loader/>  :  
         <div className="main-profile">
             <Header/>
             <div className="top-most-profile">
@@ -21,11 +39,11 @@ export default function Profile() {
             <div className="edit-btn">
                 <span className="material-symbols-outlined">edit</span>
             </div>
-                <span>Armanviruse</span>
-                <span  className="profile-subs">20/05/05/012</span>
+                <span>{user.student.name}</span>
+                <span  className="profile-subs">{user.student.idNum}</span>
             </div>
             <div className="profile-level">
-                <span>200</span>
+                <span>{user.student.level}</span>
                 <span className="profile-subs">Level</span>
             </div>
             <div className="profile-session">
@@ -40,9 +58,12 @@ export default function Profile() {
             </div>
 
             <div className="profile-middle-part">
-            
+                <div>Lights</div>
             </div>
+            <Posts page="profile" postData={user.lights}/>
 
         </div>
+    }
+    </>
     )
 }

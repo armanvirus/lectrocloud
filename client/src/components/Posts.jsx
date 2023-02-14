@@ -7,22 +7,28 @@ import {Link} from "react-router-dom";
 import moment from "moment"
 import NoAuth from './NoAuth';
 import Searching from './Searching';
+import {serverUrl} from "../utils/Datum"
 
 export default function Posts(props) {
-    const {postData} = props;
+    const {postData, page} = props;
     const [displayNoAuth,setdisplayNoAuth] = useState(false)
     // const [reactedLight, setreactedLight] = useState('')
     //console.log(postData)
     const { isSearching, 
         setisSearching,
         searchResult, 
-        setsearchResult} = useContext(StateContext);
+        setsearchResult,
+        pageNum, 
+        setPageNum,
+        hasMore, 
+        setHasMore
+        } = useContext(StateContext);
     const handleReact = (e,reactedLight)=>{
         const user = localStorage.getItem('lectrocloud');
         if(!user){
             setdisplayNoAuth(true)
         }else{
-            axios.post("http://localhost:3300/user/reaction",{
+            axios.post(`${serverUrl}/user/reaction`,{
             user:localStorage.getItem("lectroToken"),
             reactedLight
         }).then((response)=>{
@@ -34,7 +40,20 @@ export default function Posts(props) {
     const authWarnClose = ()=>{
         setdisplayNoAuth(false)
     }
-    useEffect(()=>{console.log(searchResult)},[searchResult])
+    useEffect(()=>{
+        console.log(searchResult)}
+        ,[searchResult]);
+
+        function handleScroll() {
+            if (window.innerHeight + document.documentElement.scrollTop !== document.documentElement.offsetHeight) return;
+            if (!hasMore) return;
+            setPageNum(pageNum => pageNum + 1);
+          }
+
+          useEffect(() => {
+            window.addEventListener('scroll', handleScroll);
+            return () => window.removeEventListener('scroll', handleScroll);
+          }, [hasMore]);
     return (
         <>
         {displayNoAuth && (
@@ -49,12 +68,13 @@ export default function Posts(props) {
         )}
         { isSearching ? <Searching/> : postData.map((el,elIndex)=>{
             return(
-                <div className="post">
+                <div className="post" key={elIndex}>
+            {page !== "profile" && (
             <div className="avatar">
                 <img src={amin} alt="Error"/>
-            </div>
+            </div>)}
             <div className="post-content">
-                <p className="posted-user">{el.user.username}</p>
+                {page !== "profile" && (<p className="posted-user">{el.user.username}</p>)}
                 <p className="posted-on">{moment(el.lightOn).startOf('minute').fromNow()}</p>
                 <div>
                     <div className="notes">
@@ -67,7 +87,7 @@ export default function Posts(props) {
                     "post-imgs post-imgs-single")}>
                         {el.images.map((imgEl,imgIndex)=>{
                             return(
-                                <img src={imgEl} alt="" />
+                                <img key={imgIndex} src={imgEl} alt="" />
                             )
                         })}
                     </div>

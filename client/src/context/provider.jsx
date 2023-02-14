@@ -6,6 +6,8 @@ const ContextProvider = ({children})=>{
     const [loading,setLoading] = useState(true)
     const [isSearching, setisSearching] = useState(false)
     const [searchResult, setsearchResult] = useState('')
+    const [pageNum, setPageNum] = useState(0);
+    const [hasMore, setHasMore] = useState(true)
     
    
     return(
@@ -18,7 +20,11 @@ const ContextProvider = ({children})=>{
             isSearching, 
             setisSearching,
             searchResult, 
-            setsearchResult
+            setsearchResult,
+            pageNum, 
+            setPageNum,
+            hasMore, 
+            setHasMore
             }}>
             {children} 
         </StateContext.Provider>

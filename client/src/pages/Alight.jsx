@@ -72,11 +72,6 @@ export default function Alight() {
         setloading(false)}
       },[postData])
 
-    const handleBack = ()=>{
-        navigateBack(-1)
-        // console.log("back btn clicked")
-    }
-
     const handleComment = ()=>{
         const lectroToken = localStorage.getItem("lectroToken")
         if(!lectroToken){
