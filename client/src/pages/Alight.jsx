@@ -10,6 +10,7 @@ import Comments from "../components/comments"
 import Loader from '../components/loader';
 import NoAuth from '../components/NoAuth';
 import Header from '../components/Header';
+import {serverUrl} from "../utils/Datum"
 
 
 
@@ -47,7 +48,7 @@ export default function Alight() {
         setLight(filteredLight)
         setloading(false)
     }else{
-        axios.get('http://localhost:3300/', {headers:{"Authorization":`Bearer ${token()}`}})
+        axios.get(`${serverUrl}/`, {headers:{"Authorization":`Bearer ${token()}`}})
       .then((res)=>{
           setPostData(res.data.postData)
         console.log(res)
@@ -57,7 +58,7 @@ export default function Alight() {
       })
     }
         // search available comments
-        axios.get(`http://localhost:3300/user/comment/${id}`)
+        axios.get(`${serverUrl}/user/comment/${id}`)
         .then((response)=>{
             console.log(response.data.comments)
             setcomments(response.data.comments)
@@ -78,7 +79,7 @@ export default function Alight() {
             setdisplayNoAuth(true)
         }else{
             if(!isRefly){
-                axios.post("http://localhost:3300/user/comment",{
+                axios.post(`${serverUrl}/user/comment`,{
                     comment:textAreaContent,
                     lightId:id,
                     user:lectroToken,
@@ -89,7 +90,7 @@ export default function Alight() {
     
                 })
             }else{
-                axios.post('http://localhost:3300/user/reply',
+                axios.post(`${serverUrl}/user/reply`,
                 {
                     replyObj,
                     user:localStorage.getItem("lectroToken"),

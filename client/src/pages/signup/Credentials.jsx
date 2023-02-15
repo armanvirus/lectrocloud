@@ -1,5 +1,6 @@
 import React,{useState, useEffect} from 'react'
 import axios from 'axios'
+import {serverUrl} from "../../utils/Datum"
 
 export default function Credentials(props) {
     const [showPassword, setShowPassword] = useState(false);
@@ -7,6 +8,7 @@ export default function Credentials(props) {
     const [username, setusername] = useState('')
     const [password, setpassword] = useState('')
     const [errors, seterrors] = useState([])
+    const [isLighting,setisLighting] = useState(false);
 
     const form1 = {
         idNum:idNum,
@@ -26,7 +28,9 @@ export default function Credentials(props) {
                 err.push("password must be atleat 4")
                 seterrors(err)
             }else{
-                axios.post("http://localhost:3300/user/check",{idNum}).then((response)=>{
+                setisLighting(true)
+                axios.post(`${serverUrl}/user/check`,{idNum}).then((response)=>{
+                    setisLighting(false)
                     if(response.data.user){
                         err.push("user already exist");
                         seterrors(err)
@@ -36,6 +40,9 @@ export default function Credentials(props) {
                         props.setPage(1)
                         seterrors('')
                     }
+                }).catch(err =>{ 
+                    setisLighting(false)
+                    err.push("fail to create account");
                 })
             }
         }
@@ -54,6 +61,7 @@ export default function Credentials(props) {
     },[])
     return (
         <div>
+            
             <div>
             <div className="login-container">
             <div className="sign-form">

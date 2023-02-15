@@ -45,8 +45,15 @@ export default function Posts(props) {
         ,[searchResult]);
 
         function handleScroll() {
-            if (window.innerHeight + document.documentElement.scrollTop !== document.documentElement.offsetHeight) return;
-            if (!hasMore) return;
+            const lenRemain = Math.floor(document.documentElement.offsetHeight / 4);
+            const fetchATLen = document.documentElement.offsetHeight - lenRemain;
+            const scrollLen = window.innerHeight + document.documentElement.scrollTop;
+            // console.log(fetchATLen)
+            console.log(scrollLen >= fetchATLen)
+            // if (window.innerHeight + document.documentElement.scrollTop !== document.documentElement.offsetHeight) return;
+            // if (!hasMore) return;
+            if(!hasMore || !(scrollLen >= fetchATLen)) return;
+            // console.log("has more and fetching destination reached")
             setPageNum(pageNum => pageNum + 1);
           }
 

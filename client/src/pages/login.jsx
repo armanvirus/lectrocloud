@@ -1,35 +1,52 @@
-import React,{useState} from 'react'
+import React,{useState,useContext,useEffect} from 'react'
 import {useNavigate} from "react-router-dom"
 import axios from 'axios'
 import "../styles/login.css"
+import Sending from "../components/Sending";
+import {serverUrl} from "../utils/Datum"
+import {StateContext} from "../context/provider"
+import Loader from '../components/loader';
 
 
 export default function login() {
     const [showPassword, setShowPassword] = useState(false);
     const [idNum,setidNum] = useState('')
     const [password, setPassword] = useState('')
+    const [isLighting,setisLighting] = useState(false);
+    const [iserr, setiserr] = useState('')
     const navigate = useNavigate()
+    const {isUserloged} = useContext(StateContext);
+
+    let err = [];
 
     const handleSubmit= () => {
+        setisLighting(true)
         axios.defaults.withCredentials = true;
-        axios.post('http://localhost:3300/login', {
+        axios.post(`${serverUrl}/login`, {
           idNum,
           password
         }) 
         .then(function (response) {
             if(response.data.token.length > 0){
                 localStorage.setItem("lectroToken", response.data.token)
+                setisLighting(false)
                 navigate('/main/home')
             }
           }
-        )}
+        ).catch(err =>{ 
+            setisLighting(false)
+            err.push("fail to create account");
+        })}
 
         const submition = (e)=>{
             e.preventDefault()
             handleSubmit()
         }
+
     return (
+    
         <div>
+            {isLighting && <Sending/>}
             <div className="login-container">
             <form onSubmit={ submition}>
                 <div className="log-sec-a">

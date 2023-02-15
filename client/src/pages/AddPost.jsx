@@ -1,12 +1,12 @@
-import React,{useState, useEffect} from 'react'
-// import { Document, Page } from 'react-pdf';
-// import { jsPDF } from "jspdf";
+import React,{useState, useEffect, useContext} from 'react'
 import axios from "axios";
 import amin from "../assets/amin.png"
 import "../styles/addpost.css"
 import NoAuth from '../components/NoAuth';
 import Loader from '../components/loader';
 import Sending from '../components/Sending';
+import {StateContext} from "../context/provider"
+import {serverUrl} from "../utils/Datum"
 
 // console.log(jsPDF)
 
@@ -14,13 +14,13 @@ export default function AddPost() {
     const [selectedFile, setselectedFile] = useState("");
     const [previewUrl, setpreviewUrl] = useState('');
     const [notes, setnotes] = useState('');
-    const [isUserloged, setisUserloged] = useState('');
     const [isLoading, setisLoading] = useState(true)
     const [typeErr, settypeErr] = useState("");
     const [isLighting,setisLighting] = useState(false);
 
+    const {isUserloged} = useContext(StateContext);
+
     useEffect(() => {
-        setisUserloged(localStorage.getItem('lectroToken'))
         setisLoading(false)
     }, [])
     
@@ -51,7 +51,7 @@ export default function AddPost() {
     const handleLight = ()=>{
         if(previewUrl || notes){
             setisLighting(true)
-            axios.post('http://localhost:3300/user/light',{
+            axios.post(`${serverUrl}/user/light`,{
                 image:previewUrl,
                 notes,
                 user:localStorage.getItem('lectroToken')

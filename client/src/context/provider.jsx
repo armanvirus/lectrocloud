@@ -1,6 +1,7 @@
 import React,{useState} from 'react';
 export const StateContext = React.createContext();
 
+
 const ContextProvider = ({children})=>{
     const [postData,setPostData] = useState('')
     const [loading,setLoading] = useState(true)
@@ -8,11 +9,15 @@ const ContextProvider = ({children})=>{
     const [searchResult, setsearchResult] = useState('')
     const [pageNum, setPageNum] = useState(0);
     const [hasMore, setHasMore] = useState(true)
+    const [isUserloged, setisUserloged] = useState('');
+    
     
    
     return(
         <StateContext.Provider value={{
             // intended contents here
+            isUserloged, 
+            setisUserloged,
             loading,
             setLoading,
             postData,

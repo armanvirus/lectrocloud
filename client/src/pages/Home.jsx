@@ -35,6 +35,21 @@ export default function Home() {
             setHasMore});
     },[])
 
+    // fetch lights when 3/4 of the page is scrolled
+    useEffect(()=>{
+        if(pageNum == 0) return ;
+        fetchData({
+            token,
+            loading,
+            postData,
+            setLoading,
+            setPostData,
+            pageNum, 
+            setPageNum,
+            hasMore, 
+            setHasMore}); 
+    },[pageNum])
+
     return (
         <div>
         { loading ? <Loader/> :

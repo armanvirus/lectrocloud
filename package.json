@@ -5,9 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "run dev",
-    "start": "node ./server/index",
-    "dev": "nodemon ./server/index",
-    "mern": "concurrently \"nodemon ./server/index\" \"npm run dev ./client\""
+    "start": "node index.js",
+    "dev": "nodemon index",
+    "mern": "concurrently \"nodemon index\" \"npm run dev ./client\""
   },
   "author": "arman grema",
   "license": "ISC",

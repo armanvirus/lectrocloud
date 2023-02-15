@@ -2,20 +2,20 @@ const dotenv = require('dotenv').config()
 const express = require('express')
 const app = express()
 const jwt = require('jsonwebtoken');
-const db = require("./utils/connectDb");
-const logs = require("./controllers/log")
+const db = require("./server/utils/connectDb");
+const logs = require("./server/controllers/log")
 const bodyParser = require('body-parser');
 const cors = require("cors")
-const verifiedData = require('./utils/verify');
-const light = require("./db/lights")
-const Studs = require("./db/Stud")
-const comments = require("./controllers/commentsController")
-const interactions = require('./controllers/interactions')
-const search = require('./controllers/search')
+const verifiedData = require('./server/utils/verify');
+const light = require("./server/db/lights")
+const Studs = require("./server/db/Stud")
+const comments = require("./server/controllers/commentsController")
+const interactions = require('./server/controllers/interactions')
+const search = require('./server/controllers/search')
 const multer = require('multer')
 const claudinary = require("cloudinary").v2;
-const parseToken = require("./utils/parseToken")
-const randomLights = require("./utils/randomLights")
+const parseToken = require("./server/utils/parseToken")
+const randomLights = require("./server/utils/randomLights")
 
 
 

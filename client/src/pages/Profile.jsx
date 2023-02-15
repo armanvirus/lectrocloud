@@ -1,4 +1,4 @@
-import React,{useEffect, useState} from 'react'
+import React,{useEffect, useState, useContext} from 'react'
 import amin from "../assets/amin.png"
 import "../styles/profile.css"
 import Header from '../components/Header';
@@ -7,10 +7,14 @@ import {token} from "../utils/Auths"
 import Posts from '../components/Posts';
 import Loader from '../components/loader';
 import {serverUrl} from "../utils/Datum"
+import {StateContext} from "../context/provider"
+import NoAuth from '../components/NoAuth';
 
 export default function Profile() {
     const [isLoading,setisLoading] = useState(true);
     const [user, setUser] = useState("")
+    const {isUserloged} = useContext(StateContext);
+
     useEffect(()=>{
         axios.defaults.withCredentials = true;
         axios.get(`${serverUrl}/user/profile`,{headers:{"Authorization":`Bearer ${token()}`}})
@@ -22,7 +26,9 @@ export default function Profile() {
     },[''])
     return (
         <>
-        {isLoading ? <Loader/>  :  
+        {isLoading ? <Loader/>  : <>
+        {!isUserloged ? <NoAuth/> : 
+        
         <div className="main-profile">
             <Header/>
             <div className="top-most-profile">
@@ -63,6 +69,8 @@ export default function Profile() {
             <Posts page="profile" postData={user.lights}/>
 
         </div>
+    }
+        </>
     }
     </>
     )
