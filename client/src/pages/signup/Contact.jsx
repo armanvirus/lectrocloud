@@ -36,7 +36,7 @@ export default function Contact(props) {
                     let {level , academicSession} = form2
                     let {email, phone} = form3
                     
-                    axios.post("http://localhost:3300/sign",{
+                    axios.post(`${serverUrl}/sign`,{
                         password,
                         email,
                         phone,
