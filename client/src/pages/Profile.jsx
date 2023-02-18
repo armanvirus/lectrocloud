@@ -10,6 +10,7 @@ import {serverUrl} from "../utils/Datum"
 import {StateContext} from "../context/provider"
 import NoAuth from '../components/NoAuth';
 
+
 export default function Profile() {
     const [isLoading,setisLoading] = useState(true);
     const [user, setUser] = useState("")
