@@ -23,7 +23,7 @@ module.exports ={
         
         newComment.save((err,result)=>{
           if(err) throw err;
-          res.send(result)
+          res.json({status:201,comment:result})
         })
      
         })
@@ -64,7 +64,8 @@ module.exports ={
               function(err,updateResult){
                 if(err) throw err;
                 // console.log(result.likes, "added");
-                    res.json({updateResult});
+                console.log(updateResult.reply)
+                    res.json({status:201,reply:updateResult.reply});
                 }) 
           })
     }

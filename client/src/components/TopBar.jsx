@@ -1,7 +1,8 @@
 import React,{useRef,useEffect,useState, useContext} from 'react'
-import {useNavigate,useLocation} from 'react-router-dom';
+import {useNavigate,useLocation,Link} from 'react-router-dom';
 import {StateContext} from '../context/provider';
 import axios from "axios"
+import { serverUrl } from '../utils/Datum';
 export default function TopBar() {
     let url = useLocation();
     const topbarRef = useRef()
@@ -32,7 +33,7 @@ export default function TopBar() {
     useEffect(()=>{
         if(searchKey){
             if(searchKey.length > 3){
-                axios.post("http://localhost:3300/user/search",{keyword:searchKey})
+                axios.post(`${serverUrl}/user/search`,{keyword:searchKey})
                 .then((res)=> setsearchResult(res.data))
             }
             setisSearching(true)
@@ -64,6 +65,14 @@ export default function TopBar() {
                 <div>
                     <button className="toggle-btn-active">Academia</button> 
                     <button>General</button>
+                </div>
+                <div className="top-sec-light">
+                <Link to="/main/light/">
+                <span className="material-symbols-outlined">landscape</span>
+                </Link>
+                <Link to="/main/addresource/">
+                <span className="material-symbols-outlined">picture_as_pdf</span>
+                </Link>
                 </div>
             </div>
         </div>

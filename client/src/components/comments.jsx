@@ -7,16 +7,16 @@ import Reply from "./Reply"
 export default function Comments(props) {
     const [loading, setloading] = useState(true)
 
-    const doFocus = (el)=>{
+    const doFocus = (el,replyIndex)=>{
+        console.log(replyIndex)
         props.setisRefly(true)
-        props.focusReply(el.user.name,el.user.id,el.user.profile,el._id)
+        props.focusReply(el.user.name,el.user.id,el.user.profile,el._id,replyIndex)
     }
     return (
         <div className="comments">
-            {props.comments.map((el,index)=>{
+            {props.comments.map((el,replyIndex)=>{
                 return(
                     <>
-                        {console.log(el.reply.length != 0)}
                     <div className="comment">
                     <div className="commentor-det">
                         <img src={el.user.profile} alt="user"/>
@@ -34,14 +34,15 @@ export default function Comments(props) {
                     <span>10</span>
                 </div>
                 <div className="comment-btn">
-                    <span onClick={()=> doFocus(el)} className="material-symbols-outlined">
+                    <span onClick={()=> doFocus(el,replyIndex)} className="material-symbols-outlined">
+                        {/* {console.log(replyIndex)} */}
                         quick_phrases
                     </span>
                     <span>{el.reply.length}</span>
                 </div>
                 </div>
                 </div>
-                {el.reply.length != 0 && (<Reply setisRefly={props.setisRefly}
+                {el.reply.length != 0 && (<Reply commentInx={replyIndex} setisRefly={props.setisRefly}
                     focusReply={props.focusReply} replies={el.reply} />)}
                 </>
                 )

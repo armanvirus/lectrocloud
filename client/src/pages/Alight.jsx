@@ -16,7 +16,7 @@ import {serverUrl} from "../utils/Datum"
 
 
 export default function Alight() {
-    const {id} = useParams();
+    const {id,lindex} = useParams();
     let navigateBack = useNavigate();
     let url = useLocation();
     const [light, setLight] = useState('')
@@ -30,28 +30,27 @@ export default function Alight() {
     const textAreaRef = useRef()
     const {        
         postData,
-        setPostData
+        setPostData,
+        pageNum,
+        
     } = useContext(StateContext);
    
     useEffect(()=>{
-        const token =()=>{
-            let retrievedToken = localStorage.getItem('lectroToken');
-            if(retrievedToken == null){
-                return 0
-            }else{
-                return retrievedToken
-            }
-        }
 
         if(postData){
       const filteredLight =  postData.filter((el)=> el._id == id)[0]
         setLight(filteredLight)
         setloading(false)
     }else{
-        axios.get(`${serverUrl}/`, {headers:{"Authorization":`Bearer ${token()}`}})
+        axios.get(`${serverUrl}/`, {
+            params: {
+                pageNum,
+                pageSize:10,
+              },
+            headers:{"Authorization":`Bearer ${localStorage.getItem('lectroToken')}`}})
       .then((res)=>{
           setPostData(res.data.postData)
-        console.log(res)
+        // console.log(res)
       })
       .catch((err)=>{
         console.log(err)
@@ -60,7 +59,7 @@ export default function Alight() {
         // search available comments
         axios.get(`${serverUrl}/user/comment/${id}`)
         .then((response)=>{
-            console.log(response.data.comments)
+            // console.log(response.data.comments)
             setcomments(response.data.comments)
         })
     },[])
@@ -86,7 +85,16 @@ export default function Alight() {
                     images:null,
                     files:null
                 }).then((response)=>{
-                    console.log(response.data)
+                    setcomments((prevComments) => {
+                        const newComData = [...prevComments, response.data.comment];
+                        return newComData;
+                    });
+                    // console.log(postData)
+                    setPostData((prev) => {
+                        const newUpdate = [...prev];
+                        newUpdate[lindex].comments = (newUpdate[lindex].comments || 0) + 1;
+                        return newUpdate;
+                    });
     
                 })
             }else{
@@ -98,7 +106,14 @@ export default function Alight() {
     
                 }
             ).then((response)=>{
-                console.log(response)
+                // console.log(replyObj.replyIndex)
+                let repliedComment = comments[replyObj.replyIndex]
+                repliedComment.reply = response.data.reply;
+                setcomments((prevComment) => {
+                    const newComment = [...prevComment];
+                    newComment[replyObj.replyIndex] = repliedComment;
+                    return newComment;
+                });
             })
             }
         }
@@ -107,14 +122,15 @@ export default function Alight() {
     const handleKeyUp = (event)=>{
         settextAreaContent(event.target.value)
     }
-    const focusReply = (username,userid,profile,commentId)=>{
+    const focusReply = (username,userid,profile,commentId,replyIndex)=>{
         setreplyObj({
             username,
             userid,
             profile,
-            commentId
+            commentId,
+            replyIndex
         })
-        console.log(username,userid,profile)
+        // console.log(username,userid,profile)
     }
 
     const textAreaBlur = (event)=>{
@@ -170,7 +186,7 @@ export default function Alight() {
                     <span className="material-symbols-outlined">
                         chat_bubble
                     </span>
-                    <span>{comments ? comments.length : 0}</span>
+                    <span>{light.comments}</span>
                 </div>
                 </div>
             </div>

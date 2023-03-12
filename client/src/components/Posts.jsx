@@ -15,16 +15,37 @@ export default function Posts(props) {
     // const [reactedLight, setreactedLight] = useState('')
     //console.log(postData)
     const { isSearching, 
-        setisSearching,
         searchResult, 
-        setsearchResult,
-        pageNum, 
+        setPostData, 
         setPageNum,
         hasMore, 
-        setHasMore
         } = useContext(StateContext);
-    const handleReact = (e,reactedLight)=>{
-        const user = localStorage.getItem('lectrocloud');
+    // const handleReact = (e,reactedLight,targetRef)=>{
+    //     const user = localStorage.getItem('lectroToken');
+    //     if(!user){
+    //         setdisplayNoAuth(true)
+    //     }else{
+    //         axios.post(`${serverUrl}/user/reaction`,{
+    //         user:localStorage.getItem("lectroToken"),
+    //         reactedLight
+    //     }).then((response)=>{
+    //         let likedLight = postData[targetRef]
+    //         if(response.data.added){
+    //             likedLight.likes.push(reactedLight);
+    //             setPostData(...postData, likedLight)
+    //         }else{
+    //             likedLight.likes = likedLight.likes.filter(el =>{
+    //                 el !== reactedLight
+    //             });
+    //             setPostData(...postData, likedLight)
+    //             console.log("it is removed")
+    //         }
+    //     })
+    //     }
+    // }
+
+    const handleReact = (e,reactedLight,targetRef)=>{
+        const user = localStorage.getItem('lectroToken');
         if(!user){
             setdisplayNoAuth(true)
         }else{
@@ -32,17 +53,30 @@ export default function Posts(props) {
             user:localStorage.getItem("lectroToken"),
             reactedLight
         }).then((response)=>{
-            console.log(response)
+            let likedLight = postData[targetRef]
+            if(response.data.added){
+                likedLight.likes.push(reactedLight);
+            }else{
+                likedLight.likes = likedLight.likes.filter(el =>{
+                    el !== reactedLight
+                });
+            }
+            setPostData((prevPostData) => {
+                const newPostData = [...prevPostData];
+                newPostData[targetRef] = likedLight;
+                return newPostData;
+            });
         })
         }
     }
+    
 
     const authWarnClose = ()=>{
         setdisplayNoAuth(false)
     }
-    useEffect(()=>{
-        console.log(searchResult)}
-        ,[searchResult]);
+    // useEffect(()=>{
+    //     console.log(searchResult)}
+    //     ,[searchResult]);
 
         function handleScroll() {
             const lenRemain = Math.floor(document.documentElement.offsetHeight / 4);
@@ -50,8 +84,6 @@ export default function Posts(props) {
             const scrollLen = window.innerHeight + document.documentElement.scrollTop;
             // console.log(fetchATLen)
             console.log(scrollLen >= fetchATLen)
-            // if (window.innerHeight + document.documentElement.scrollTop !== document.documentElement.offsetHeight) return;
-            // if (!hasMore) return;
             if(!hasMore || !(scrollLen >= fetchATLen)) return;
             // console.log("has more and fetching destination reached")
             setPageNum(pageNum => pageNum + 1);
@@ -101,18 +133,18 @@ export default function Posts(props) {
                 </div>
                 <div className="reactions-sec">
                 <div className="like-btn">
-                    <span onClick={(e)=> handleReact(e, el._id)} className="material-symbols-outlined">
+                    <span onClick={(e)=> handleReact(e, el._id, elIndex)} className="material-symbols-outlined">
                         favorite
                     </span>
-                    <span>10</span>
+                    <span>{el.likes.length}</span>
                 </div>
                 <div className="comment-btn">
-                    <Link to={`/helpers/alight/${el._id}`}>
+                    <Link to={`/helpers/alight/${el._id}/${elIndex}`}>
                     <span className="material-symbols-outlined">
                         chat_bubble
                     </span>
                     </Link>
-                    <span>34</span>
+                    <span>{el.comments}</span>
                 </div>
                 </div>
             </div>

@@ -6,7 +6,8 @@ import moment from 'moment';
 export default function Reply(props) {
     const doFocus = (el)=>{
         props.setisRefly(true)
-        props.focusReply(el.replyTo.username,el.replyTo.userid,el.replyTo.profile,el.replyTo.commentId)
+        const inx =   props.commentInx
+        props.focusReply(el.replyTo.username,el.replyTo.userid,el.replyTo.profile,el.replyTo.commentId,inx)
     }
     return (
         <>

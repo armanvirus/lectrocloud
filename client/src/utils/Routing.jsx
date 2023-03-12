@@ -11,10 +11,12 @@ import Home from "../pages/Home"
 import Profile from "../pages/Profile"
 import AddPost from "../pages/AddPost"
 import Alight from "../pages/Alight"
+import Materials from "../pages/Materials"
 import NotFound from '../pages/NotFound';
 import "../App.css"
 import {StateContext} from "../context/provider"
 import {getUser} from "./Auths"
+import AddResources from "../pages/AddResource"
 
 export default function Routing() {
     const {        
@@ -32,9 +34,11 @@ export default function Routing() {
         <Route path='main'  element={<MainHome/>}>
           <Route path='home'  index element={<Home/>}/>
           <Route path='profile' element={<Profile/>}/>
-          <Route path='light' element={<AddPost/>}/> 
+          <Route path='light' element={<AddPost/>}/>
+          <Route path='addresource' element={<AddResources/>}/>
+          <Route path="materials" element={<Materials/>}/> 
         </Route>
-          <Route path='/helpers/alight/:id' element={<Alight/>}/>   
+          <Route path='/helpers/alight/:id/:lindex' element={<Alight/>}/>   
         
         <Route path="/*" element={<NotFound/> } />
       </Routes>

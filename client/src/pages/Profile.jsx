@@ -20,6 +20,7 @@ export default function Profile() {
         axios.defaults.withCredentials = true;
         axios.get(`${serverUrl}/user/profile`,{headers:{"Authorization":`Bearer ${token()}`}})
         .then((response)=>{
+            console.log(response)
             setUser(response.data)
             setisLoading(false)
         }

@@ -54,8 +54,8 @@ export default function AddPost() {
             axios.post(`${serverUrl}/user/light`,{
                 image:previewUrl,
                 notes,
-                user:localStorage.getItem('lectroToken')
-            }).then((response)=>{
+            },{headers:{"Authorization": `Bearer ${localStorage.getItem('lectroToken')}`}})
+            .then((response)=>{
                 console.log(response)
                 setisLighting(false)
                 setpreviewUrl("")

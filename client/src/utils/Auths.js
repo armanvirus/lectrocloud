@@ -30,7 +30,7 @@ export const fetchData = (fetchObj)=>{
     axios.defaults.withCredentials = true;
     /* when there is no token in the local storage the value 
     is null but when it sent to server it shows that the null value is string  0f length
-    4, there i created this logic if the servre receives 0 then it means there is no
+    4, there i created this logic if the server receives 0 then it means there is no
     token the user is not logged" */
     setHasMore(false)
     axios.get(`${serverUrl}/`, {
@@ -38,7 +38,7 @@ export const fetchData = (fetchObj)=>{
         pageNum,
         pageSize:10,
       },
-      headers:{"Authorization":`Bearer ${token()}`}})
+      headers:{"Authorization":`Bearer ${localStorage.getItem('lectroToken')}`}})
   .then((res)=>{
       // setPostData(res.data.postData)
       setPostData(prevData => [...prevData, ...res.data.postData]);

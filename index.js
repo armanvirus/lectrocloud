@@ -16,6 +16,9 @@ const multer = require('multer')
 const claudinary = require("cloudinary").v2;
 const parseToken = require("./server/utils/parseToken")
 const randomLights = require("./server/utils/randomLights")
+const lightsObj = require("./server/utils/getCommentCount");
+const resources = require("./server/controllers/resources")
+const parseFiles = require("./server/middlewares/parseFiles")
 
 
 
@@ -23,14 +26,16 @@ const randomLights = require("./server/utils/randomLights")
 
 db();
 
-console.log(process.env.CLOUDINARY_URL)
+// console.log(process.env.CLOUDINARY_URL)
 
 app.use(bodyParser.json({ limit: '50mb' }))
 app.use(bodyParser.urlencoded({ limit: '50mb', extended: true }))
+app.use(parseFiles)
 
 app.use(cors({
   credentials:true,
   origin:process.env.CLIENT_URI}));
+  
   app.get('/', (req, res) => {
     verifiedData(req,res)
   })
@@ -58,6 +63,7 @@ app.post('/sign', logs.sign )
 app.post('/login', logs.login )
 // route to check if the user exist before creating account
 app.post('/user/check', logs.check);
+app.post('/user/resources',resources.add)
 
 //handling reaction button
 app.post('/user/reaction', interactions.reaction)
@@ -69,54 +75,36 @@ app.post('/user/reply', comments.doReply)
 // handle search
 app.post('/user/search', search.search)
 // route to make an upload
-app.post('/user/light',(req,res)=>{
-  const {user, image, notes} = req.body;
-  var imgUrl, fileUrl;
-  if(user){
+app.post('/user/light',async(req,res)=>{
+  const {image, notes} = req.body;
+  const user = await parseToken(req);
+  if(!user)
+    return res.json({status:401, msg:"please login"});
 
-    jwt.verify(user, process.env.JWT_KEY, (error, decodedUser) => {
-      if (error) {
-        console.log(error)
-        res.send(error)
-      } else {
-        if(image){
-        }
-        claudinary.uploader.upload(image,{
-          use_filename: true, 
-          unique_filename: false,
-          folder:"lectrocloud_post" },(err,result)=>{
-            if(err){
-              //send the err
-              res.send(err)
-            }else{
-              //save the post
-              const newlight = new light({
-                user:{username:decodedUser.name},
-                note:notes,
-                images:[image && (result.url)],
-                files:[""],
-                likes:[""],
-                level:decodedUser.level,
-                academicSession:decodedUser.academicSession,
-                author:decodedUser.id
-              })
-              newlight.save((saveErr,saveUser)=>{
-                res.send(saveUser)
-              })
-            }
-          })
-          // console.log(foundUser)
-          
-          
-       
-      }
-  })
-  }
+  const result = await  claudinary.uploader.upload(image,{
+      use_filename: true, 
+      unique_filename: false,
+      folder:"lectrocloud_post" });
+      // console.log(foundUser)
+      const newlight = new light({
+        user:{username:user.name},
+        note:notes,
+        images:[image && (result.url)],
+        files:[""],
+        likes:[""],
+        level:user.level,
+        academicSession:user.academicSession,
+        author:user.id
+      })
+      newlight.save((saveErr,saveUser)=>{
+        res.send(saveUser)
+      })
+
 })
 
 app.get("/user/profile",async(req,res)=>{
+  const requiredEntry = require("./server/utils/lights_constants")()
   const token = await parseToken(req);
-  var user;
   if(!token){
     return res.json({ code: 401, msg: "authentication failed" })
   }
@@ -126,7 +114,9 @@ app.get("/user/profile",async(req,res)=>{
     const lights = await light.find({author:token.id})
     .sort("-lightOn")
     .limit(10)
-    user = {student, lights}
+    .select(requiredEntry)
+    lighsObjv2 = await lightsObj(lights)
+    user = {student, lights:lighsObjv2}
     res.status(200)
     .json(user)
   }catch(err){
