@@ -1,6 +1,7 @@
 import React,{useState, useEffect} from 'react'
 import axios from 'axios'
 import {serverUrl} from "../../utils/Datum"
+import { Link } from 'react-router-dom';
 
 export default function Credentials(props) {
     const [showPassword, setShowPassword] = useState(false);
@@ -95,7 +96,7 @@ export default function Credentials(props) {
                         // props.setPage(1)
                         }}>Next</button>
                     <p>already have an account?</p>
-                    <a href="#">signin here</a>
+                    <Link to="/login">signin here</Link>
                 </div>
             </div>
             </div>

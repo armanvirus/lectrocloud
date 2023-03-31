@@ -17,10 +17,15 @@ export default function AddPost() {
     const [isLoading, setisLoading] = useState(true)
     const [typeErr, settypeErr] = useState("");
     const [isLighting,setisLighting] = useState(false);
-
-    const {isUserloged} = useContext(StateContext);
+    const [isLoged,setLoged] = useState(false)
 
     useEffect(() => {
+        const user = localStorage.getItem('lectroToken');
+        if(user){
+            setLoged(true)
+        }else{
+            setLoged(false)
+        }
         setisLoading(false)
     }, [])
     
@@ -75,7 +80,7 @@ export default function AddPost() {
         {isLoading ? <Loader/> : <>
         {isLighting && <Sending/>}
         {
-          !isUserloged ? <NoAuth/> :      
+          !isLoged ? <div style={{transform:"translateY(-70px)",}}> <NoAuth/> </div> :      
         <div>
             <div className="light-container">
             <div className="active-user">

@@ -1,0 +1,69 @@
+write a js program to covert data 
+{
+  'resource[]': [
+    PersistentFile {
+      _events: [Object: null prototype],
+      _eventsCount: 1,
+      _maxListeners: undefined,
+      lastModifiedDate: 2023-03-20T13:35:03.154Z,
+      filepath: 'C:\\Users\\user\\AppData\\Local\\Temp\\5aaac0ade17d2871118184b02.docx',
+      newFilename: '5aaac0ade17d2871118184b02.docx',
+      originalFilename: '408 cover.docx',
+      mimetype: 'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+      hashAlgorithm: false,
+      size: 10469,
+      _writeStream: [WriteStream],
+      hash: null,
+      [Symbol(kCapture)]: false
+    },
+    PersistentFile {
+      _events: [Object: null prototype],
+      _eventsCount: 1,
+      _maxListeners: undefined,
+      lastModifiedDate: 2023-03-20T13:35:03.161Z,
+      filepath: 'C:\\Users\\user\\AppData\\Local\\Temp\\5aaac0ade17d2871118184b03.docx',
+      newFilename: '5aaac0ade17d2871118184b03.docx',
+      originalFilename: 'BELLO 4.docx',
+      mimetype: 'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+      hashAlgorithm: false,
+      size: 18367,
+      _writeStream: [WriteStream],
+      hash: null,
+      [Symbol(kCapture)]: false
+    }
+  ]
+}
+into this format
+[
+  {
+    events: [Object: null prototype],
+      _eventsCount: 1,
+      _maxListeners: undefined,
+      lastModifiedDate: 2023-03-20T13:35:03.154Z,
+      filepath: 'C:\\Users\\user\\AppData\\Local\\Temp\\5aaac0ade17d2871118184b02.docx',
+      newFilename: '5aaac0ade17d2871118184b02.docx',
+      originalFilename: '408 cover.docx',
+      mimetype: 'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+      hashAlgorithm: false,
+      size: 10469,
+      _writeStream: [WriteStream],
+      hash: null,
+      [Symbol(kCapture)]: false
+  }
+  ,
+  {
+    events: [Object: null prototype],
+      _eventsCount: 1,
+      _maxListeners: undefined,
+      lastModifiedDate: 2023-03-20T13:35:03.161Z,
+      filepath: 'C:\\Users\\user\\AppData\\Local\\Temp\\5aaac0ade17d2871118184b03.docx',
+      newFilename: '5aaac0ade17d2871118184b03.docx',
+      originalFilename: 'BELLO 4.docx',
+      mimetype: 'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+      hashAlgorithm: false,
+      size: 18367,
+      _writeStream: [WriteStream],
+      hash: null,
+      [Symbol(kCapture)]: false
+  }
+]

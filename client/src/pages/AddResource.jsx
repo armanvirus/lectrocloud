@@ -20,10 +20,16 @@ export default function AddResources() {
     const [selectedFiles, setSelectedFiles] = useState([]);
     const [unsupportedFiles, setUnsupportedFiles] = useState([]);
     const maxFileSize = 10 * 1024 * 1024; // 10 MB in bytes
-    const {isUserloged} = useContext(StateContext);
+    const [isLoged,setLoged] = useState(false)
     const allowedExtensions = ['.jpg', '.jpeg', '.png', '.doc', '.docx', '.xlsx','.xls','.txt','.tiff', '.pptx', '.ppt', '.pdf'];
 
     useEffect(() => {
+        const user = localStorage.getItem('lectroToken');
+        if(user){
+            setLoged(true)
+        }else{
+            setLoged(false)
+        }
         setisLoading(false)
     }, [])
     
@@ -45,8 +51,9 @@ export default function AddResources() {
     const handleLight = ()=>{
         if(selectedFiles && title){
             setisLighting(true)
+            console.log(selectedFiles)
             axios.post(`${serverUrl}/user/resources`,{
-            file:selectedFiles,
+            resource:selectedFiles,
                 title,
             },{
                 headers:{
@@ -72,7 +79,7 @@ export default function AddResources() {
         {isLoading ? <Loader/> : <>
         {isLighting && <Sending/>}
         {
-          !isUserloged ? <NoAuth/> :      
+          !isLoged? <div style={{transform:"translateY(-70px)",}}> <NoAuth/> </div> :      
         <div>
             <div className="light-container">
             <div className="active-user">

@@ -43,7 +43,7 @@ module.exports = async (lights) => {
     // Wait for all the promises to resolve and add the objects to the embededLights array
     embededLights = await Promise.all(promises);
   
-    console.log(embededLights);
+    // console.log(embededLights);
   
     return embededLights;
   };

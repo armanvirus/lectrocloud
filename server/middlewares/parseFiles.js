@@ -11,8 +11,15 @@ module.exports = (req, res, next) => {
       if (err) {
         next(err);
       } else {
+        
+        const output = files['resource[]'].map(file => {
+          return {
+            ...file
+          };
+        });
         req.body = fields;
-        req.files = files;
+        req.files = output
+        // console.log(req.files)
         next();
       }
     });

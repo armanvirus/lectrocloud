@@ -1,5 +1,5 @@
 import React,{useState,useContext,useEffect} from 'react'
-import {useNavigate} from "react-router-dom"
+import {useNavigate, Link} from "react-router-dom"
 import axios from 'axios'
 import "../styles/login.css"
 import Sending from "../components/Sending";
@@ -13,7 +13,7 @@ export default function login() {
     const [idNum,setidNum] = useState('')
     const [password, setPassword] = useState('')
     const [isLighting,setisLighting] = useState(false);
-    const [iserr, setiserr] = useState('')
+    const [iserr, setiserr] = useState(false)
     const navigate = useNavigate()
     const {isUserloged} = useContext(StateContext);
 
@@ -26,10 +26,12 @@ export default function login() {
           idNum,
           password
         }) 
-        .then(function (response) {
-            if(response.data.token.length > 0){
-                localStorage.setItem("lectroToken", response.data.token)
+        .then(function (res) {
+            if(res.data.token.length > 0){
+                localStorage.setItem("lectroToken", res.data.token)
                 setisLighting(false)
+                console.log(res);
+                
                 navigate('/main/home')
             }
           }
@@ -68,10 +70,13 @@ export default function login() {
                         <input type="checkbox" name="keep" id="check"/> Keep me Loged</div>
                     </div>
                 </div>
+                
                 <div className="log-sec-b">
                     <button>Login</button>
+                    {/* <p>don't hyave an account?</p> */}
+                    <Link to="/signup">create account</Link>
                     <p>can't remember your password?</p>
-                    <a href="#">Forgot password</a>
+                    <Link to="#">Forgot password</Link>
                 </div>
             </form>
             </div>

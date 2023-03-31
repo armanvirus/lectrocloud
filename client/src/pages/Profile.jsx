@@ -14,22 +14,31 @@ import NoAuth from '../components/NoAuth';
 export default function Profile() {
     const [isLoading,setisLoading] = useState(true);
     const [user, setUser] = useState("")
-    const {isUserloged} = useContext(StateContext);
+    const [isLoged,setLoged] = useState(false)
 
     useEffect(()=>{
-        axios.defaults.withCredentials = true;
+        const user = localStorage.getItem('lectroToken');
+        if(user){
+            setLoged(true)
+            axios.defaults.withCredentials = true;
         axios.get(`${serverUrl}/user/profile`,{headers:{"Authorization":`Bearer ${token()}`}})
         .then((response)=>{
             console.log(response)
             setUser(response.data)
             setisLoading(false)
         }
-    ).catch((err)=>console.log(err))
+    )
+    .catch((err)=>console.log(err))
+        }else{
+            setLoged(false)
+            setisLoading(false)
+        }
+        
     },[''])
     return (
         <>
         {isLoading ? <Loader/>  : <>
-        {!isUserloged ? <NoAuth/> : 
+        {!isLoged ? <NoAuth/> : 
         
         <div className="main-profile">
             <Header/>

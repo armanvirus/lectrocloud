@@ -11,7 +11,7 @@ module.exports = async (req,res)=>{
         try{
             const decoded = await parseToken(req);
      if(decoded){
-         console.log(decoded)
+        //  console.log(decoded)
          let relatedLights = await lights.find({$and: [
             { level: decoded.level },
             { academicSession: decoded.academicSession } 
