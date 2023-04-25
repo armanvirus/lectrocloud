@@ -1,6 +1,6 @@
 import React,{useState, useEffect, useContext} from 'react'
 import axios from "axios";
-import DocViewer from "react-doc-viewer";
+// import DocViewer from "react-doc-viewer";
 import amin from "../assets/amin.png"
 import "../styles/addpost.css"
 import NoAuth from '../components/NoAuth';

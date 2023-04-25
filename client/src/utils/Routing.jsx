@@ -17,6 +17,7 @@ import "../App.css"
 import {StateContext} from "../context/provider"
 import {getUser} from "./Auths"
 import AddResources from "../pages/AddResource"
+import Entry from "../pages/Entry";
 
 export default function Routing() {
     const {        
@@ -28,7 +29,7 @@ export default function Routing() {
     <>
     <Router>
       <Routes>
-        {/* <Route path="/" element={<SignUp/>}/> */}
+        <Route path="/" element={ <Entry/> }/>
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path='main'  element={<MainHome/>}>
