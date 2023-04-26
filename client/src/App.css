@@ -10,7 +10,10 @@
   font-family: 'Lato-Regular';
   src: url('./styles/Fonts/Lato-Regular.ttf');
 }
-@import url('https://fonts.googleapis.com/css2?family=Lobster+Two&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300&display=swap');
+@font-face {
+  font-family: 'lobster two';
+  src: url('./styles/Fonts/LobsterTwo-Regular.ttf');
+}
 body{
   background: rgba(242,242,242,.4);
 }
@@ -30,6 +33,7 @@ p.app-name{
   margin: 20px 0 2.2rem 0;
 }
 .app-phrase{
+  font-family: RobotoCondensed-Regular;
   font-size: 16px;
   line-height: 1.2;
   margin-bottom: 30px;
@@ -66,10 +70,12 @@ p.app-name{
 }
 .entry-btn-opt span{
 margin: 0 3px;
+}
 .entry-btn-opt a{
   font-weight: 500;
   color:rgba(55,125,255,1);
 }
+
 .loader{
   width: 100vw;
   height:60vh;
