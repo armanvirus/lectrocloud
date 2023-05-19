@@ -17,24 +17,23 @@ export default function Credentials(props) {
         password:password
     }
 
+    console.log(serverUrl)
+
     
     const handleclick = ()=>{
-        let err =[]
+        var err =[]
 
         if(idNum == "" || username == "" || password == ""){
-            err.push("please fill all fields")
-            seterrors(err)
+            seterrors("please fill all fields")
         }else{
             if(password.length < 4){
-                err.push("password must be atleat 4")
-                seterrors(err)
+                seterrors("password must be atleat 4")
             }else{
                 setisLighting(true)
                 axios.post(`${serverUrl}/user/check`,{idNum}).then((response)=>{
                     setisLighting(false)
                     if(response.data.user){
-                        err.push("user already exist");
-                        seterrors(err)
+                        seterrors("user already exist")
                     }else{
                         console.log("no error")
                         localStorage.setItem("form1", JSON.stringify(form1));
@@ -43,7 +42,7 @@ export default function Credentials(props) {
                     }
                 }).catch(err =>{ 
                     setisLighting(false)
-                    err.push("fail to create account");
+                    seterrors("fail to create account")
                 })
             }
         }

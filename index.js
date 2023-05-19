@@ -18,7 +18,7 @@ const parseToken = require("./server/utils/parseToken")
 const randomLights = require("./server/utils/randomLights")
 const lightsObj = require("./server/utils/getCommentCount");
 const resources = require("./server/controllers/resources")
-const parseFiles = require("./server/middlewares/parseFiles")
+// const parseFiles = require("./server/middlewares/parseFiles")
 
 
 
@@ -30,7 +30,7 @@ db();
 
 app.use(bodyParser.json({ limit: '50mb' }))
 app.use(bodyParser.urlencoded({ limit: '50mb', extended: true }))
-app.use(parseFiles)
+// app.use(parseFiles)
 
 app.use(cors({
   credentials:true,
@@ -39,23 +39,13 @@ app.use(cors({
   app.get('/', (req, res) => {
     verifiedData(req,res)
   })
-  // config claudinar
-  // claudinary.config({
-  //   claud_name:process.env.CLAUD_NAME,
-  //   api_key:process.env.API_KEY,
-  //   api_secret:process.env.API_SECRET
-  // })
+
 
   
   app.use(express.static('../uploads'))
 
   
-  const upload = multer({
-    dest: '../uploads/',
-    limits: {
-      fileSize: 100 * 1024 * 1024 // 100 MB
-    }
-  })
+  const upload = multer()
   
 
 // Set up a route for handling login/sign requests
@@ -63,8 +53,8 @@ app.post('/sign', logs.sign )
 app.post('/login', logs.login )
 // route to check if the user exist before creating account
 app.post('/user/check', logs.check);
-app.post('/user/resources',resources.add)
-
+app.post('/user/resources', upload.array('resource[]'),resources.add)
+app.get('resource/get', resources.get)
 //handling reaction button
 app.post('/user/reaction', interactions.reaction)
 //comment route
@@ -80,16 +70,19 @@ app.post('/user/light',async(req,res)=>{
   const user = await parseToken(req);
   if(!user)
     return res.json({status:401, msg:"please login"});
-
-  const result = await  claudinary.uploader.upload(image,{
+  let uploadedimg ;
+  if(image){
+    const result = await  claudinary.uploader.upload(image,{
       use_filename: true, 
       unique_filename: false,
       folder:"lectrocloud_post" });
+      uploadedimg = result
+  }
       // console.log(foundUser)
       const newlight = new light({
         user:{username:user.name},
         note:notes,
-        images:[image && (result.url)],
+        images:[image && (uploadedimg.url)],
         files:[""],
         likes:[""],
         level:user.level,
@@ -97,6 +90,7 @@ app.post('/user/light',async(req,res)=>{
         author:user.id
       })
       newlight.save((saveErr,saveUser)=>{
+        if(saveErr) console.log(err);
         res.send(saveUser)
       })
 
