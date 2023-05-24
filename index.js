@@ -54,7 +54,9 @@ app.post('/login', logs.login )
 // route to check if the user exist before creating account
 app.post('/user/check', logs.check);
 app.post('/user/resources', upload.array('resource[]'),resources.add)
-app.get('resource/get', resources.get)
+app.get('/resource/get', resources.get)
+app.post('/resource/reaction', resources.reaction)
+// app.post('/s/comment')
 //handling reaction button
 app.post('/user/reaction', interactions.reaction)
 //comment route

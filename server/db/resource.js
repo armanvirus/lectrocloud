@@ -4,8 +4,10 @@ const mongoose = require("mongoose"),
 
    const resourceSchema = new Schema({
            title:{type:String},
-           files:[{ type: String }],
+           file:{ type: String },
+           size:String,
            level:{type:String, required:true},
+           likes:[String],
            academicSession:{type:String, required:true},
            author: {
             type: mongoose.Schema.Types.ObjectId,

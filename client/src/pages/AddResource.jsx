@@ -14,6 +14,7 @@ import {serverUrl} from "../utils/Datum"
 export default function AddResources() {
     const [previewUrl, setpreviewUrl] = useState('');
     const [title, setTitle] = useState('');
+    const [type, setType] = useState('material');
     const [isLoading, setisLoading] = useState(true)
     const [typeErr, settypeErr] = useState("");
     const [isLighting,setisLighting] = useState(false);
@@ -53,8 +54,9 @@ export default function AddResources() {
             setisLighting(true)
             console.log(selectedFiles)
             axios.post(`${serverUrl}/user/resources`,{
-            resource:selectedFiles,
+                resource:selectedFiles,
                 title,
+                type
             },{
                 headers:{
                    "Authorization":`Bearer ${localStorage.getItem('lectroToken')}`,
