@@ -1,12 +1,12 @@
 # Acawave - Empowering Education Through Collaboration
 
- Acawave is an innovative platform designed to connect university students, foster collaboration, and provide access to valuable resources. This repository serves as the hub for the development and enhancement of the Connectix platform.
+ Acawave is an innovative platform designed to connect university students, foster collaboration, and provide access to valuable resources. This repository serves as the hub for the development and enhancement of the acawave platform.
 
 ![Acawave Logo](/assets/logo.png)
 
 ## Table of Contents
 
-- [About Connectix](#about-connectix)
+- [About Acawave](#about-connectix)
 - [Getting Started](#getting-started)
   - [Installation](#installation)
   - [Running the Development Server](#running-the-development-server)
@@ -39,11 +39,11 @@ npm install
 1. Start the development server:
 npm start
 
-2. Open your browser and navigate to `http://localhost:3000` to see Connectix in action.
+2. Open your browser and navigate to `http://localhost:3000` to see Acawave in action.
 
 ## Tech Stack
 
-Connectix is built using the following technologies:
+Acawave is built using the following technologies:
 
 - Frontend: React, Redux
 - Backend: Node.js, Express
@@ -52,7 +52,7 @@ Connectix is built using the following technologies:
 
 ## File Upload with Cloudinary
 
-Connectix leverages [Cloudinary](https://cloudinary.com/) for seamless file uploads. Cloudinary provides an easy-to-use platform for managing and serving media files. To implement file uploads, follow these steps:
+Acawave leverages [Cloudinary](https://cloudinary.com/) for seamless file uploads. Cloudinary provides an easy-to-use platform for managing and serving media files. To implement file uploads, follow these steps:
 
 1. Sign up for a Cloudinary account.
 2. Retrieve your API credentials from the Cloudinary dashboard.
@@ -76,11 +76,11 @@ git checkout -b feature/awesome-feature
 3. Make your changes and commit them:
 git commit -m "Add awesome feature"
 
-5. Create a pull request here on the `connectix` repository.
+5. Create a pull request here on the `acawave` repository.
 
 ### Bug Reports and Feature Requests
 
-If you find a bug or have a feature request, please create an issue on the GitHub repository. Your feedback is crucial to improving Connectix.
+If you find a bug or have a feature request, please create an issue on the GitHub repository. Your feedback is crucial to improving acawave.
 
 ## License
 
