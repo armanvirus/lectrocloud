@@ -1,6 +1,6 @@
 # Acawave - Empowering Education Through Collaboration
 
-Connectix is an innovative platform designed to connect university students, foster collaboration, and provide access to valuable resources. This repository serves as the hub for the development and enhancement of the Connectix platform.
+ Acawave is an innovative platform designed to connect university students, foster collaboration, and provide access to valuable resources. This repository serves as the hub for the development and enhancement of the Connectix platform.
 
 ![Acawave Logo](/assets/logo.png)
 
