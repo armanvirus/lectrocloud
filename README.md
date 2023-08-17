@@ -19,7 +19,7 @@
 
 ## About Acawave
 
-Acawave aims to revolutionize the way university students collaborate, learn, and share knowledge. With personalized newsfeeds, discussion forums, resource sharing, and expert insights, Connectix empowers students to excel academically.
+Acawave aims to revolutionize the way university students collaborate, learn, and share knowledge. With personalized newsfeeds, discussion forums, resource sharing, and expert insights, acawave empowers students to excel academically.
 
 ## Getting Started
 
