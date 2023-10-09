@@ -67,7 +67,7 @@ const Log = {
     login:(req,res)=>{
         // Get the username and password from the request body
         const { idNum, password } = req.body
-console.log(req.body)
+    console.log(req.body)
         if(idNum != "undefined" && password > 4){
 
         // search if user exist
