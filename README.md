@@ -22,7 +22,10 @@
 Acawave aims to revolutionize the way university students collaborate, learn, and share knowledge. With personalized newsfeeds, discussion forums, resource sharing, and expert insights, acawave empowers students to excel academically.
 
 ## Getting Started
-
+## App overview
+![demo image 1](./imgs/mobile.gif)
+![demo image 1](./imgs/mobile(1).gif)
+![demo image 1](./imgs/mobile(2).gif)
 ### Installation
 
 1. Clone this repository:
