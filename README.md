@@ -24,8 +24,8 @@ Acawave aims to revolutionize the way university students collaborate, learn, an
 ## Getting Started
 ## App overview
 ![demo image 1](./imgs/mobile.gif)
-![demo image 1](./imgs/mobile(1).gif)
-![demo image 1](./imgs/mobile(2).gif)
+![demo image 1](./imgs/mobile1.gif)
+![demo image 1](./imgs/mobile2.gif)
 ### Installation
 
 1. Clone this repository:
