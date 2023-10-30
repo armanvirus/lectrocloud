@@ -1,91 +1,116 @@
-# Acawave - Empowering Education Through Collaboration
+# Acawave Documentation
 
- Acawave is an innovative platform designed to connect university students, foster collaboration, and provide access to valuable resources. This repository serves as the hub for the development and enhancement of the acawave platform.
-
-![Acawave Logo](/assets/logo.png)
+Welcome to the Acawave project documentation. This repository serves as the hub for the development and enhancement of the Acawave platform. Acawave is an innovative platform designed to connect university students, foster collaboration, and provide access to valuable resources. It's built using the MERN stack and Cloudinary for storage.
 
 ## Table of Contents
 
-- [About Acawave](#about-connectix)
+- [Project Overview](#project-overview)
 - [Getting Started](#getting-started)
+  - [Prerequisites](#prerequisites)
   - [Installation](#installation)
-  - [Running the Development Server](#running-the-development-server)
-- [Tech Stack](#tech-stack)
-- [File Upload with Cloudinary](#file-upload-with-cloudinary)
+- [Features](#features)
+  - [Day and Night Mode](#day-and-night-mode)
+  - [Courses Resources Sections](#courses-resources-sections)
+  - [Newsfeed and Media](#newsfeed-and-media)
+  - [Student Chatrooms](#student-chatrooms)
+  - [Event Notifications](#event-notifications)
 - [Contributing](#contributing)
-  - [Code Contribution](#code-contribution)
-  - [Bug Reports and Feature Requests](#bug-reports-and-feature-requests)
+  - [Prerequisites for Development](#prerequisites-for-development)
+  - [Setting Up a Development Environment](#setting-up-a-development-environment)
+  - [Code Contribution Guidelines](#code-contribution-guidelines)
+  - [Issue Tracking](#issue-tracking)
 - [License](#license)
 
-## About Acawave
+## Project Overview
 
-Acawave aims to revolutionize the way university students collaborate, learn, and share knowledge. With personalized newsfeeds, discussion forums, resource sharing, and expert insights, acawave empowers students to excel academically.
+Acawave is an innovative platform designed to connect university students, foster collaboration, and provide access to valuable resources. This documentation provides a comprehensive guide on how to use and contribute to the Acawave platform.
 
 ## Getting Started
-## App overview
-![demo image 1](./imgs/mobile.gif)
-![demo image 1](./imgs/mobile1.gif)
-![demo image 1](./imgs/mobile2.gif)
+
+### Prerequisites
+
+Before you begin, ensure you have met the following requirements:
+
+- [List of prerequisites (e.g., Node.js, MongoDB, Git, etc.)]
+
 ### Installation
 
-1. Clone this repository:
-git clone https://github.com/mufteem-ibrahim/acawave.git
+Follow these steps to install and set up Acawave on your local machine:
 
-2. Navigate to the project directory:
-cd acawave
+1. Clone the Acawave repository:
 
-3. Install the required dependencies:
-npm install
+   ```bash
+   git clone https://github.com/acawave/acawave.git
+   cd acawave
+2. Install Server Dependencies:
+    cd server
+    npm install
+3. Install Client Dependencies:
+    cd server
+    npm install
+Configure environment variables as needed.
 
-### Running the Development Server
-
-1. Start the development server:
+4. Start the server and client:
+    # Start the server
+cd server
 npm start
 
-2. Open your browser and navigate to `http://localhost:3000` to see Acawave in action.
+# Start the client
+cd client
+npm start
 
-## Tech Stack
+# Features
 
-Acawave is built using the following technologies:
+Acawave offers a range of features to enhance the user experience and foster collaboration among university students. Here's an overview of each feature:
 
-- Frontend: React, Redux
-- Backend: Node.js, Express
-- Database: MongoDB
-- Authentication: JWT
+## Day and Night Mode
 
-## File Upload with Cloudinary
+Acawave provides a day and night mode feature to improve user accessibility and reduce eye strain during nighttime use.
 
-Acawave leverages [Cloudinary](https://cloudinary.com/) for seamless file uploads. Cloudinary provides an easy-to-use platform for managing and serving media files. To implement file uploads, follow these steps:
+## Courses Resources Sections
 
-1. Sign up for a Cloudinary account.
-2. Retrieve your API credentials from the Cloudinary dashboard.
-3. Integrate the Cloudinary SDK in your backend for file uploads.
-4. Update the frontend to handle file selection and submission.
-5. Store the Cloudinary URLs in the database for resource sharing.
+The platform offers organized course resources, including course materials, lecture notes, assignments, and other educational resources.
 
-For detailed instructions, refer to the [Cloudinary documentation](https://cloudinary.com/documentation).
+## Newsfeed and Media
 
-## Contributing
+Acawave includes a newsfeed for sharing updates, news, and media content. Users can post, comment, and share content, with integration with Cloudinary for multimedia assets.
 
-### Code Contribution
+## Student Chatrooms
 
-We welcome contributions from developers like you! To contribute code, follow these steps:
+Student chatrooms allow real-time communication and collaboration among users. Create, join, and engage in conversations with your fellow students.
 
-1. Fork this repository.
+## Event Notifications
 
-2. Create a new branch for your feature/fix:
-git checkout -b feature/awesome-feature
+Acawave provides event notifications to keep users informed about upcoming events, classes, deadlines, and other important dates.
 
-3. Make your changes and commit them:
-git commit -m "Add awesome feature"
+# Contributing
 
-5. Create a pull request here on the `acawave` repository.
+We welcome contributions from the community to help improve Acawave. Here's how you can contribute:
 
-### Bug Reports and Feature Requests
+## Prerequisites for Development
 
-If you find a bug or have a feature request, please create an issue on the GitHub repository. Your feedback is crucial to improving acawave.
+Before you start contributing, ensure you have the following tools and software installed:
 
-## License
+- [List of tools and software for development]
 
-This project is licensed under the MIT License. See the [LICENSE](/LICENSE) file for details.
+## Setting Up a Development Environment
+
+To set up a local development environment, follow these steps:
+
+1. [Detailed instructions for cloning the repository, installing dependencies, etc.]
+
+## Code Contribution Guidelines
+
+When contributing to Acawave, please follow our coding style and guidelines. We use [specific coding style, commit message format, etc.].
+
+## Issue Tracking
+
+We use GitHub Issues to manage tasks and track bugs. Check our GitHub Issues to find issues to work on.
+
+# License
+
+This project is licensed under the [License Name] - see the [LICENSE.md](LICENSE.md) file for details.
+
+Thank you for your interest in Acawave. We appreciate your contributions and support in making the platform better for university students.
+
 
