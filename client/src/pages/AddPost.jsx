@@ -7,6 +7,7 @@ import Loader from '../components/loader';
 import Sending from '../components/Sending';
 import {StateContext} from "../context/provider"
 import {serverUrl} from "../utils/Datum"
+import Icons from "../components/Icons"
 
 // console.log(jsPDF)
 
@@ -94,13 +95,13 @@ export default function AddPost() {
                 <div>
                     <label htmlFor="image">
                     <input onChange={(e)=> inputChange(e) } type="file" name="image" id="image"/>
-                    <span className="material-symbols-outlined">landscape</span>
+                    <span ><Icons icon="image"/></span>
                     </label>
                </div>
                <div>
                     <label htmlFor="file">
                     <input type="file" name="docs" id="file"/>
-                    <span className="material-symbols-outlined">picture_as_pdf</span>
+                    <span ><Icons icon="file"/></span>
                     </label>
                </div>
             </div>
@@ -113,7 +114,7 @@ export default function AddPost() {
                 typeErr  && !previewUrl && (<div>{typeErr}</div>)
             }
             <div className="send-btn">
-            <button onClick={()=>{handleLight()}} > <span> light </span> <span className="material-symbols-outlined">bolt</span> </button>
+            <button onClick={()=>{handleLight()}} > <span> light </span> <span ><Icons icon="light"/></span> </button>
             </div>
             </div>
         </div>

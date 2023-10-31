@@ -1,6 +1,7 @@
 import React from 'react'
 import {useParams,useNavigate,useLocation} from 'react-router-dom';
 import "../styles/alight.css"
+import Icons from "./Icons"
 
 export default function Header() {
     let navigateBack = useNavigate();
@@ -14,7 +15,8 @@ export default function Header() {
         <>
             <div className="top-commet-sec">
                 <button onClick={()=> handleBack()} className="back-btn">
-                    <span className="material-symbols-outlined">keyboard_backspace</span>
+                    {/* <span className="material-symbols-outlined">keyboard_backspace</span> */}
+                    <Icons icon="back"/>
                     <span>Back</span>
                 </button>
                 {url.pathname == "/main/profile" &&(

@@ -11,6 +11,8 @@ import Loader from '../components/loader';
 import NoAuth from '../components/NoAuth';
 import Header from '../components/Header';
 import {serverUrl} from "../utils/Datum"
+import Icons from "../components/Icons"
+
 
 
 
@@ -200,7 +202,7 @@ export default function Alight() {
                 onChange={(e)=>handleKeyUp(e)} 
                 name="comment" ></textarea>
                 <div>
-                <button onClick={()=> handleComment()}> <span>light</span> <span className="material-symbols-outlined">bolt</span></button>
+                <button onClick={()=> handleComment()}> <span>light</span> <span ><Icons icon="light"/></span></button>
                 </div>
             </div>
             </div>

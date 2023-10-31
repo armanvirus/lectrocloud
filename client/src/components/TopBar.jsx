@@ -3,6 +3,7 @@ import {useNavigate,useLocation,Link} from 'react-router-dom';
 import {StateContext} from '../context/provider';
 import axios from "axios"
 import { serverUrl } from '../utils/Datum';
+import Icons from "./Icons"
 export default function TopBar() {
     let url = useLocation();
     const topbarRef = useRef()
@@ -68,10 +69,10 @@ export default function TopBar() {
                 </div>
                 <div className="top-sec-light">
                 <Link to="/main/light/">
-                <span className="material-symbols-outlined">landscape</span>
+                <span><Icons icon="image"/></span>
                 </Link>
                 <Link to="/main/addresource/">
-                <span className="material-symbols-outlined">picture_as_pdf</span>
+                <span><Icons icon="file"/></span>
                 </Link>
                 </div>
             </div>
