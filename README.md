@@ -68,7 +68,11 @@ For detailed instructions, refer to the [Cloudinary documentation](https://cloud
 ## Contributing
 
 ### Code Contribution
-####The codebase is consisting of both the backend and frontend
+####The codebase is consisting of both the backend and frontend.
+The client if for the Reactis frontend
+while the root directory and server arebelongs to backend
+
+
 
 
 We welcome contributions from developers like you! To contribute code, follow these steps:
