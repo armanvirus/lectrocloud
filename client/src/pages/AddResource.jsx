@@ -8,6 +8,7 @@ import Loader from '../components/loader';
 import Sending from '../components/Sending';
 import {StateContext} from "../context/provider"
 import {serverUrl} from "../utils/Datum"
+import Icons from "../components/Icons"
 
 // console.log(jsPDF)
 
@@ -95,7 +96,7 @@ export default function AddResources() {
                 <div>
                     <label htmlFor="image">
                     <input onChange={(e)=> handleFileChange(e) } type="file" multiple name="file" id="image"/>
-                    <span className="material-symbols-outlined">picture_as_pdfe</span>
+                    <span ><Icons icon="file"/></span>
                     </label>
                </div>
             </div>
@@ -113,7 +114,7 @@ export default function AddResources() {
                <p>No files selected.</p>
              )}
             <div className="send-btn">
-            <button onClick={()=>{handleLight()}} > <span> light </span> <span className="material-symbols-outlined">bolt</span> </button>
+            <button onClick={()=>{handleLight()}} > <span> light </span> <span ><Icons icon="light"/></span> </button>
             </div>
             </div>
         </div>

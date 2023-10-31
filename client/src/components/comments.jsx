@@ -3,6 +3,7 @@ import amin from "../assets/amin.png"
 import "../styles/alight.css"
 import moment from 'moment';
 import Reply from "./Reply"
+import Icons from "./Icons"
 
 export default function Comments(props) {
     const [loading, setloading] = useState(true)
@@ -28,15 +29,14 @@ export default function Comments(props) {
                     </div>
                     <div className="reactions-sec">
                 <div className="like-btn">
-                    <span className="material-symbols-outlined">
-                        favorite
+                    <span>
+                    <Icons icon="like" />
                     </span>
                     <span>10</span>
                 </div>
                 <div className="comment-btn">
-                    <span onClick={()=> doFocus(el,replyIndex)} className="material-symbols-outlined">
-                        {/* {console.log(replyIndex)} */}
-                        quick_phrases
+                    <span onClick={()=> doFocus(el,replyIndex)}>
+                    <Icons icon="comment" />
                     </span>
                     <span>{el.reply.length}</span>
                 </div>

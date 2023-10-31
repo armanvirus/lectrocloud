@@ -85,7 +85,7 @@
 .post-imgs img{
     height: 150px;
     width: 100%;
-    object-fit: contain;
+    object-fit: cover;
     border: solid .3px rgb(255, 255,255);
     /* box-shadow:0 0 1px .5px rgba(0, 0,0,.2); */
     border-radius: 5px;

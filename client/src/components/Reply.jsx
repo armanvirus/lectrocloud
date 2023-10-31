@@ -2,6 +2,7 @@ import React,{useState} from 'react'
 import amin from "../assets/amin.png"
 import "../styles/alight.css"
 import moment from 'moment';
+import Icons from "./Icons"
 
 export default function Reply(props) {
     const doFocus = (el)=>{
@@ -34,16 +35,16 @@ export default function Reply(props) {
                     </div>
                     <div className="reactions-sec">
                 <div className="like-btn">
-                    <span className="material-symbols-outlined">
-                        favorite
+                    <span>
+                    <Icons icon="like"/>
                     </span>
                     <span>10</span>
                 </div>
                 <div className="comment-btn">
                     <span 
                     onClick={()=> doFocus(el)} 
-                    className="material-symbols-outlined">
-                        quick_phrases
+                    >
+                        <Icons icon="comment"/>
                     </span>
                     <span>reply</span>
                 </div>

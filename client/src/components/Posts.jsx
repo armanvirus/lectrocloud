@@ -8,6 +8,7 @@ import moment from "moment"
 import NoAuth from './NoAuth';
 import Searching from './Searching';
 import {serverUrl} from "../utils/Datum"
+import Icons from './Icons'
 
 export default function Posts(props) {
     const {postData, page} = props;
@@ -133,15 +134,15 @@ export default function Posts(props) {
                 </div>
                 <div className="reactions-sec">
                 <div className="like-btn">
-                    <span onClick={(e)=> handleReact(e, el._id, elIndex)} className="material-symbols-outlined">
-                        favorite
+                    <span onClick={(e)=> handleReact(e, el._id, elIndex)}>
+                        <Icons icon="like"/>
                     </span>
                     <span>{el.likes.length}</span>
                 </div>
                 <div className="comment-btn">
                     <Link to={`/helpers/alight/${el._id}/${elIndex}`}>
-                    <span className="material-symbols-outlined">
-                        chat_bubble
+                    <span>
+                        <Icons icon="comment"/>
                     </span>
                     </Link>
                     <span>{el.comments}</span>
